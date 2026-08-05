@@ -3,3 +3,6 @@ node_modules/
 *.log
 .env
 index.html.bak
+_test_*.js
+_trace_*.js
+_chk.js
