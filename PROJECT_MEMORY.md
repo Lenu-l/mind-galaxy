@@ -38,13 +38,13 @@
 
 ---
 
-## 三、五大游戏模式（仅前 2 个已实现）
+## 三、五大游戏模式（前 3 个已实现，模式 4-5 待做）
 
 | # | 星球 | 模式 | 训练能力 | 状态 | 主光色 |
 |---|------|------|----------|------|--------|
 | 1 | 秩序星 | 星轨寻数（舒尔特方格变体）| 注意集中 | ✅ 已完成 | 金/琥珀 |
 | 2 | 宁静星 | 杂念捕手 → 已升级为「色轮净化」| 抑制控制 | ✅ 已完成 | 生物荧光绿 #39FF14 |
-| 3 | 脉冲星 | 神经脉冲（规则翻转）| 认知灵活 | ⬜ 待做 | 未定 |
+| 3 | 裂变星 | 神经脉冲（脉冲分流·规则翻转）| 认知灵活 | ✅ 已完成 | 等离子青 #00F0FF |
 | 4 | 记忆星 | 记忆回廊（Corsi 方块）| 空间工作记忆 | ⬜ 待做 | 未定 |
 | 5 | 双核星 | 双轨监控（Dual N-back）| 听觉+空间工作记忆 | ⬜ 待做 | 未定 |
 
@@ -78,7 +78,17 @@
 - **难度**：晨露(60s)/微风(90s)/暴雨(90s)，统一 spawnInterval/speed/maxSpores 参数
 - **评级**：基于准确率 S(≥90%且0错)/A(≥80%)/B(≥70%)/C(≥60%)，错误≥5锁死B
 - **生成**：每 1.5s 随机 1 个，场上最多 6-8 个，超出则最早的自然消散
-- **已知待优化（用户最新反馈 2026-08-05）**：孢子流动速度偏慢需加快；不要直接提示该拖入什么颜色，应在旁边列出规则提示供玩家自行对照
+- **已知待优化（用户最新反馈 2026-08-05，已于 2026-08-05 完成）**：孢子流动速度偏慢→已加快（dew/breeze/storm 速度 30/45/60 → 55/80/110，warning 期×0.5 缓冲保留）；不再直接提示应拖入的互补色，改为膜囊只显示自身显色 + 固定「互补净化·规则」面板（赤红↔翠绿、湛蓝↔金黄，形状+色样色盲友好）供玩家自行对照
+- **第二轮微调（用户反馈 2026-08-05 完成）**：①游戏结束/中途返回时光点粒子（.focus-particle, fixed z-index:9999）会残留在结算画面→新增 clearFocusParticles()，在 endFocusGame 与 cleanupFocus 中彻底清除孢子层与光点；②游戏开始前的设定页（screen-setup）新增「互补净化·规则」面板（复用 rp-shape/spore-shape 视觉），仅 focus 模式显示，开局前先讲一遍规则；③时长 90s→75s（三档统一）；④孢子颜色改为洗牌袋（nextSporeColor）保证4色均匀分布，替代纯随机
+
+### 模式 3：神经脉冲（pulse）
+- **机制**：中央「脉冲核」周期发射发光脉冲（复用4色+形状：赤红圆/翠绿菱/湛蓝三角/金黄星）；屏幕左右两枚「端口」
+- **规则翻转**：规则A={赤红,湛蓝}→左、{翠绿,金黄}→右；周期翻转（flipInterval）为规则B（左右互换），训练认知灵活 / set-shifting
+- **翻转反馈**：翻转前 grace(2.5~3.5s) 端口预警脉动；翻转瞬间白光扫描波（pulse-flash，复用 focus-flash 动画）；翻转后 grace 宽限期，按旧规则操作不打断连击（沿用 focus 惯性保护，不记错误）
+- **操作**：拖脉冲到正确端口=收集(+分+连击)；拖错端口=glitch错误(连击清零)；拖到空白=放回原位不罚；脉冲超时未处理=遗漏
+- **难度**：微光(75s)/湍流(90s)/风暴(90s)，调 spawnInterval/maxPulses/flipInterval/grace/pulseLife
+- **评级**：基于准确率 S(≥90%且0错)/A(≥80%)/B(≥70%)/C(≥60%)，错误≥5锁死B（同 focus）
+- **视觉**：脉冲核 .orb-plasma 同系青色发光；端口为发光环（非圆角卡片）；错误复用 spore-err 的 hue-rotate glitch
 
 ---
 
@@ -132,7 +142,7 @@ today = { completed, ritualProgress, freeSeconds }
 1. 本地 `mind-galaxy/` 目录不动，代码原封保留。
 2. 登录新 WorkBuddy 账号后，用 GitHub 拉取或直接打开本地 `index.html`。
 3. 把本文件内容作为上下文给新会话，或直接说"读 PROJECT_MEMORY.md 继续"。
-4. 下一步建议做模式 3「神经脉冲」（规则翻转 / 认知灵活），参考原始产品文档。
+4. 模式 3「神经脉冲」已完成（脉冲分流+规则翻转）。下一步建议做模式 4「记忆回廊」（Corsi 方块 / 空间工作记忆），参考原始产品文档。
 
 ---
 
@@ -143,3 +153,25 @@ today = { completed, ritualProgress, freeSeconds }
 - 评级 SABC 硬门槛
 - Phase 1=MVP基础版+打卡+评级+localStorage；Phase 2=雷达图+日报+成就+分享；Phase 3=神经树+装扮+排行榜+音效
 - 微信小程序个人主体免费，云开发有免费额度
+
+---
+
+## 九、平台适配层（小程序原生改写准备）
+
+**决策（2026-08-05）**：最终要发布微信小程序，采用「原生改写」路线（非 web-view）。先把存储/音频/画布/振动抽成一层**平台适配壳**，当前为 Web(DOM) 实现，将来原生改写只换这一层，游戏逻辑不动。
+
+**位置**：`index.html` 中 `MAT_CLASS` 之后、`loadData()` 之前，注释 `/* ===== Platform Adapter Layer ===== */`。包含：
+- `Store`：`get/set/remove(key)` — 现用 localStorage；MP 改 `wx.getStorageSync/setStorageSync/removeStorageSync`
+- `Sound`：`unlock()/play(type)` — 现用 `AudioContext`；MP 改 `wx.createWebAudioContext`（受限）或 `wx.createInnerAudioContext`；已加首次交互解锁监听（iOS 自动播放策略）
+- `Canvas`：`get2d(id)` 返回 `{canvas,ctx}`、`onResize(cb)` — 现用 `getContext('2d')`+`window resize`；MP 改 `wx.createSelectorQuery` 取 node + `node.getContext('2d')` + `wx.onWindowResize`
+- `Haptics`：`vibrate(ms)` — 现用 `navigator.vibrate`；MP 改 `wx.vibrateShort`（iOS 原生不支持 Vibration，web-view 下静默）
+- `Platform.viewport()`：返回 `{w,h,dpr}` — 现用 `innerWidth/innerHeight/devicePixelRatio`；MP 改 `wx.getWindowInfo()`
+
+**自检结果（2026-08-05）**：游戏逻辑中已无任何直接的 `localStorage.`/`navigator.vibrate`/`new AudioContext`/`getContext('2d')`/`window.addEventListener('resize')` 调用，全部经由适配层。node --check 通过。
+
+**原生改写时仍需处理（不在适配层内的 Web 全局）**：
+1. starfield 绘制里仍直接用了 `devicePixelRatio`（~15 处半径/漂移缩放）与 `innerWidth`（orbit 布局 `availW`）——改写时用 `Platform.viewport().dpr` / `.w` 替换（已在 viewport 集中）。
+2. `requestAnimationFrame(animStars/focusLoop/pulseLoop)`：web-view 下正常；原生 MP 的 canvas 用 `Canvas.requestAnimationFrame`（node 上的 rAF）或 `setInterval`。
+3. **最大的改写成本在 DOM 本身**：各模式用 `document.getElementById`/`createElement`/`addEventListener` 大量操作 DOM 与 CSS 动画。原生 MP 无 DOM，需用 WXML + `setData` + 数据驱动渲染，或改用 `<canvas>` 全自绘。这一层不在适配壳范围内，是模式 4/5 接入时就要开始考虑的架构约束（建议：新模式的"视图"尽量用数据状态描述，减少直接 DOM 依赖）。
+
+**替代路线（供参考）**：web-view 嵌入——把本 HTML 挂到已备案服务器，用 `<web-view>` 包一层，当前代码几乎零改；代价是需要服务器+ICP、配业务域名、iOS 端音频/振动受限。

@@ -796,6 +796,79 @@ body::after{
   pointer-events:none;z-index:9999;
 }
 
+/* Rule reference panel — self-check only, never reveals the answer directly */
+.rule-panel{
+  position:absolute;top:14px;right:12px;z-index:8;pointer-events:none;
+  padding:8px 11px;border:1px solid rgba(57,255,20,0.18);
+  background:rgba(8,16,8,0.4);
+  font-size:11px;letter-spacing:.5px;color:var(--dim);
+  display:flex;flex-direction:column;gap:6px;
+}
+.rule-panel .rp-title{
+  font-size:9px;letter-spacing:2px;color:rgba(57,255,20,0.7);
+  border-bottom:1px solid rgba(57,255,20,0.12);padding-bottom:4px;
+}
+.rule-panel .rp-row{display:flex;align-items:center;gap:6px;white-space:nowrap}
+.rule-panel .rp-arrow{color:rgba(255,255,255,0.3);font-size:11px;margin:0 1px}
+.rule-panel .rp-name{font-weight:600;font-size:11px}
+.rule-panel .rp-note{font-size:9px;color:rgba(255,255,255,0.4);letter-spacing:.5px}
+.rp-shape{width:16px;height:16px;flex:0 0 16px;position:relative}
+.rp-shape .spore-shape{animation:none;display:block}
+.setup-rule{
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  padding:9px 14px;border:1px solid rgba(57,255,20,0.18);
+  background:rgba(8,16,8,0.4);border-radius:0;
+  font-size:11px;letter-spacing:.5px;color:var(--dim);max-width:300px;
+}
+.setup-rule .rp-title{
+  font-size:9px;letter-spacing:2px;color:rgba(57,255,20,0.7);
+  border-bottom:1px solid rgba(57,255,20,0.12);padding-bottom:4px;width:100%;text-align:center;
+}
+.setup-rule .rp-row{display:flex;align-items:center;gap:6px;white-space:nowrap}
+.setup-rule .rp-arrow{color:rgba(255,255,255,0.3);font-size:11px;margin:0 1px}
+.setup-rule .rp-name{font-weight:600;font-size:11px}
+.setup-rule .rp-note{font-size:9px;color:rgba(255,255,255,0.4);letter-spacing:.5px;margin-top:2px}
+
+/* ===== Pulse Game CSS (神经脉冲) ===== */
+.pulse-area{position:absolute;inset:0;overflow:hidden;z-index:1}
+.pulse-layer{position:absolute;inset:0;z-index:10}
+.pulse-core{
+  position:absolute;top:50%;left:50%;width:64px;height:64px;border-radius:50%;
+  transform:translate(-50%,-50%);z-index:5;pointer-events:none;
+  background:radial-gradient(circle at 40% 35%,rgba(120,245,255,0.45),rgba(0,180,200,0.12) 60%,transparent);
+  border:1px solid rgba(0,240,255,0.4);
+  box-shadow:0 0 30px rgba(0,240,255,0.35),inset 0 0 18px rgba(0,240,255,0.18);
+  animation:pulse-core-breathe 3s ease-in-out infinite;
+}
+@keyframes pulse-core-breathe{0%,100%{transform:translate(-50%,-50%) scale(1);filter:brightness(1)}50%{transform:translate(-50%,-50%) scale(1.08);filter:brightness(1.3)}}
+.pulse-port{
+  position:absolute;top:50%;width:74px;height:74px;border-radius:50%;
+  transform:translateY(-50%);z-index:4;pointer-events:none;
+  border:1px solid rgba(0,240,255,0.25);
+  box-shadow:0 0 18px rgba(0,240,255,0.12),inset 0 0 14px rgba(0,240,255,0.06);
+  display:flex;align-items:center;justify-content:center;
+  transition:border-color .3s,box-shadow .3s;
+}
+.pulse-port.left{left:30px}
+.pulse-port.right{right:30px}
+.pulse-port .port-label{font-size:10px;letter-spacing:2px;color:rgba(0,240,255,0.55)}
+.pulse-port.warning{border-color:rgba(0,240,255,0.7);box-shadow:0 0 30px rgba(0,240,255,0.4),inset 0 0 20px rgba(0,240,255,0.2);animation:port-warn .35s ease-in-out infinite}
+@keyframes port-warn{0%,100%{filter:brightness(1)}50%{filter:brightness(1.6)}}
+.pulse-port.flip-in{border-color:rgba(255,255,255,0.7);box-shadow:0 0 34px rgba(255,255,255,0.4)}
+.pulse-flash{position:absolute;inset:0;z-index:30;pointer-events:none;opacity:0}
+.pulse-flash.active{animation:flash-sweep .5s ease-out}
+.pulse-rule{
+  position:absolute;top:14px;left:12px;z-index:8;pointer-events:none;
+  padding:8px 11px;border:1px solid rgba(0,240,255,0.18);
+  background:rgba(8,20,24,0.4);
+  font-size:11px;letter-spacing:.5px;color:var(--dim);
+  display:flex;flex-direction:column;gap:6px;
+}
+.pulse-rule .pr-title{font-size:9px;letter-spacing:2px;color:rgba(0,240,255,0.7);border-bottom:1px solid rgba(0,240,255,0.12);padding-bottom:4px}
+.pulse-rule .pr-row{display:flex;align-items:center;gap:5px;white-space:nowrap}
+.pulse-rule .pr-arrow{color:rgba(255,255,255,0.3);margin:0 2px}
+.pulse-rule .pr-side{font-weight:700;color:rgba(0,240,255,0.85)}
+
 /* ===== Responsive ===== */
 @media(max-width:360px){
   .planet-orb{width:54px;height:54px}
@@ -876,6 +949,12 @@ body::after{
     <div class="setup-tour-badge" id="setup-tour-badge">巡礼 1 / 5</div>
     <div class="setup-desc" id="setup-desc">圆盘上随机分布数字1-N，按顺序依次点击。眼睛固定中心，用余光感知数字位置。</div>
     <div class="setup-target" id="setup-target">视觉搜索 · 选择性注意</div>
+    <div class="setup-rule" id="setup-rule" style="display:none">
+      <div class="rp-title">互补净化 · 规则</div>
+      <div class="rp-row"><span class="rp-shape spore-red"><div class="spore-shape"></div></span><span class="rp-name" style="color:rgba(255,68,68,0.9)">赤红</span><span class="rp-arrow">↔</span><span class="rp-shape spore-green"><div class="spore-shape"></div></span><span class="rp-name" style="color:rgba(57,255,20,0.9)">翠绿</span></div>
+      <div class="rp-row"><span class="rp-shape spore-blue"><div class="spore-shape"></div></span><span class="rp-name" style="color:rgba(68,136,255,0.9)">湛蓝</span><span class="rp-arrow">↔</span><span class="rp-shape spore-gold"><div class="spore-shape"></div></span><span class="rp-name" style="color:rgba(255,215,0,0.9)">金黄</span></div>
+      <div class="rp-note">膜囊显何色，即拖入其互补色</div>
+    </div>
     <div class="diff-selector" id="diff-selector"></div>
     <div class="diff-best" id="diff-best">选择强度查看峰值</div>
     <button class="start-core" id="start-game-btn">启动</button>
@@ -897,10 +976,28 @@ body::after{
     </div>
   </div>
   <div class="focus-area" id="focus-area" style="display:none">
+    <div class="rule-panel" id="rule-panel">
+      <div class="rp-title">互补净化 · 规则</div>
+      <div class="rp-row"><span class="rp-shape spore-red"><div class="spore-shape"></div></span><span class="rp-name" style="color:rgba(255,68,68,0.9)">赤红</span><span class="rp-arrow">↔</span><span class="rp-shape spore-green"><div class="spore-shape"></div></span><span class="rp-name" style="color:rgba(57,255,20,0.9)">翠绿</span></div>
+      <div class="rp-row"><span class="rp-shape spore-blue"><div class="spore-shape"></div></span><span class="rp-name" style="color:rgba(68,136,255,0.9)">湛蓝</span><span class="rp-arrow">↔</span><span class="rp-shape spore-gold"><div class="spore-shape"></div></span><span class="rp-name" style="color:rgba(255,215,0,0.9)">金黄</span></div>
+      <div class="rp-note">膜囊显何色，即拖入其互补色</div>
+    </div>
     <div class="membrane" id="membrane"></div>
-    <div class="membrane-hint" id="membrane-hint">拖入<span class="target-color" id="target-color">翠绿</span></div>
+    <div class="membrane-hint" id="membrane-hint">膜囊显色 <span class="target-color" id="membrane-color">赤红</span></div>
     <div class="spore-layer" id="spore-layer"></div>
     <div class="focus-flash" id="focus-flash"></div>
+  </div>
+  <div class="pulse-area" id="pulse-area" style="display:none">
+    <div class="pulse-rule" id="pulse-rule">
+      <div class="pr-title">脉冲规则 · 当前</div>
+      <div class="pr-row"><span class="rp-shape spore-red"><div class="spore-shape"></div></span><span class="rp-shape spore-blue"><div class="spore-shape"></div></span><span class="pr-arrow">→</span><span class="pr-side" id="rule-left">左</span></div>
+      <div class="pr-row"><span class="rp-shape spore-green"><div class="spore-shape"></div></span><span class="rp-shape spore-gold"><div class="spore-shape"></div></span><span class="pr-arrow">→</span><span class="pr-side" id="rule-right">右</span></div>
+    </div>
+    <div class="pulse-port left" id="port-left"><span class="port-label">左</span></div>
+    <div class="pulse-port right" id="port-right"><span class="port-label">右</span></div>
+    <div class="pulse-core" id="pulse-core"></div>
+    <div class="pulse-layer" id="pulse-layer"></div>
+    <div class="pulse-flash" id="pulse-flash"></div>
   </div>
 </div>
 
@@ -966,7 +1063,7 @@ const PLANETS=[
   {id:'focus',name:'宁静星',mode:'杂念捕手',mat:'bio',color:'#39FF14',status:'active',
    desc:'四色孢子飘浮，拖互补色入膜囊，划走其余三种。色轮切换考验惯性抑制。',
    target:'抑制控制 · 冲动抑制'},
-  {id:'pulse',name:'裂变星',mode:'神经脉冲',mat:'plasma',color:'#00F0FF',status:'locked',
+  {id:'pulse',name:'裂变星',mode:'神经脉冲',mat:'plasma',color:'#00F0FF',status:'active',
    desc:'脉冲从中心生成，滑动引导到正确端口。规则会动态翻转。',
    target:'认知灵活性 · 反应抑制'},
   {id:'corridor',name:'回响星',mode:'记忆回廊',mat:'crystal',color:'#B026FF',status:'locked',
@@ -984,23 +1081,84 @@ const DIFFS={
     {key:'6x6',label:'大师',N:36, size:0.45,fontSize:18,float:true, errPenalty:0.5,r:{S:35,A:50,B:70}},
   ],
   focus:[
-    {key:'dew',label:'晨露',duration:90,spawnInterval:2.0,speed:30,maxSpores:6,r:{S:0.90,A:0.80,B:0.70,C:0.60}},
-    {key:'breeze',label:'微风',duration:90,spawnInterval:1.5,speed:45,maxSpores:8,r:{S:0.90,A:0.80,B:0.70,C:0.60}},
-    {key:'storm',label:'暴雨',duration:90,spawnInterval:1.0,speed:60,maxSpores:10,r:{S:0.90,A:0.80,B:0.70,C:0.60}},
+    {key:'dew',label:'晨露',duration:75,spawnInterval:2.0,speed:55,maxSpores:6,r:{S:0.90,A:0.80,B:0.70,C:0.60}},
+    {key:'breeze',label:'微风',duration:75,spawnInterval:1.5,speed:80,maxSpores:8,r:{S:0.90,A:0.80,B:0.70,C:0.60}},
+    {key:'storm',label:'暴雨',duration:75,spawnInterval:1.0,speed:110,maxSpores:10,r:{S:0.90,A:0.80,B:0.70,C:0.60}},
+  ],
+  pulse:[
+    {key:'spark',label:'微光',duration:75,spawnInterval:1.8,maxPulses:5,flipInterval:22,grace:3.5,pulseLife:5.0,r:{S:0.90,A:0.80,B:0.70,C:0.60}},
+    {key:'flux',label:'湍流',duration:90,spawnInterval:1.3,maxPulses:7,flipInterval:16,grace:3.0,pulseLife:4.0,r:{S:0.90,A:0.80,B:0.70,C:0.60}},
+    {key:'surge',label:'风暴',duration:90,spawnInterval:0.95,maxPulses:9,flipInterval:12,grace:2.5,pulseLife:3.2,r:{S:0.90,A:0.80,B:0.70,C:0.60}},
   ],
 };
 const STARS={S:50,A:40,B:30,C:20};
 const MAT_CLASS={stellar:'orb-stellar',bio:'orb-bio',plasma:'orb-plasma',crystal:'orb-crystal',holo:'orb-holo'};
 
+/* ===== Platform Adapter Layer =====
+   为微信小程序原生改写预留的适配壳。当前为 Web(DOM) 实现；
+   原生改写时【只需替换本块】为 wx.* 对应实现，其余游戏逻辑无需改动：
+     Store     → wx.getStorageSync / setStorageSync / removeStorageSync
+     Sound     → wx.createWebAudioContext（受限）或 wx.createInnerAudioContext
+     Canvas    → wx.createSelectorQuery 取 canvas node + node.getContext('2d')
+     Haptics   → wx.vibrateShort
+     Platform  → wx.getWindowInfo()
+   注：starfield 绘制中仍直接用了 devicePixelRatio / innerWidth 等全局，
+   原生改写时也需替换为 Platform.viewport().dpr / .w；已在 viewport 中集中。 */
+const Store={
+  get(key){try{const r=localStorage.getItem(key);return r?JSON.parse(r):null}catch(e){return null}},
+  set(key,val){try{localStorage.setItem(key,JSON.stringify(val))}catch(e){}},
+  remove(key){try{localStorage.removeItem(key)}catch(e){}},
+};
+const Sound={
+  _ctx:null,
+  unlock(){try{
+    if(!this._ctx){const AC=window.AudioContext||window.webkitAudioContext;if(AC)this._ctx=new AC();}
+    if(this._ctx&&this._ctx.state==='suspended')this._ctx.resume();
+  }catch(e){}},
+  play(type){
+    if(!D.settings.sound)return;
+    this.unlock();if(!this._ctx)return;
+    try{
+      const ac=this._ctx,o=ac.createOscillator(),g=ac.createGain();
+      o.connect(g);g.connect(ac.destination);
+      if(type==='correct'){
+        o.frequency.setValueAtTime(600,ac.currentTime);
+        o.frequency.exponentialRampToValueAtTime(1000,ac.currentTime+0.1);
+        o.type='sine';g.gain.setValueAtTime(0.08,ac.currentTime);
+        g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+0.15);
+        o.start();o.stop(ac.currentTime+0.15);
+      }else{
+        o.frequency.value=180;o.type='sawtooth';
+        g.gain.setValueAtTime(0.06,ac.currentTime);
+        g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+0.2);
+        o.start();o.stop(ac.currentTime+0.2);
+      }
+    }catch(e){}
+  }
+};
+const Canvas={
+  get2d(id){const el=document.getElementById(id);return el?{canvas:el,ctx:el.getContext('2d')}:null},
+  onResize(cb){window.addEventListener('resize',cb)},
+};
+const Haptics={
+  vibrate(ms){if(navigator.vibrate)navigator.vibrate(ms)},
+};
+const Platform={
+  viewport(){return{w:window.innerWidth,h:window.innerHeight,dpr:window.devicePixelRatio||1}},
+};
+// 首次用户交互时解锁音频（满足 iOS web-view / Safari 自动播放策略）
+document.addEventListener('touchstart',()=>Sound.unlock(),{once:true});
+document.addEventListener('click',()=>Sound.unlock(),{once:true});
+
 function loadData(){
-  try{const r=localStorage.getItem(STORE_KEY);if(r)return JSON.parse(r)}catch(e){}
+  try{const r=Store.get(STORE_KEY);if(r)return JSON.parse(r)}catch(e){}
   return{streak:0,lastCheckInDate:null,todayCompleted:false,todayCompletedDate:null,
     todayFreeSeconds:0,todayFreeDate:null,bestStreak:0,totalStars:0,totalSessions:0,
     settings:{sound:true,vibration:true,fixation:true},
-    modeBests:{orbit:{'3x3':null,'4x4':null,'5x5':null,'6x6':null},focus:{dew:null,breeze:null,storm:null}},
+    modeBests:{orbit:{'3x3':null,'4x4':null,'5x5':null,'6x6':null},focus:{dew:null,breeze:null,storm:null},pulse:{spark:null,flux:null,surge:null}},
     sessions:[]};
 }
-function saveData(){localStorage.setItem(STORE_KEY,JSON.stringify(D))}
+function saveData(){Store.set(STORE_KEY,D)}
 let D=loadData();
 let curMode='orbit',curDiff='5x5',isTour=false,freeMode=false;
 let tourIdx=0,tourPlanets=[],tourPlanetNames=[];
@@ -1021,11 +1179,12 @@ function showScreen(id){
 }
 
 /* ===== Starfield — Multi-layer Deep Space ===== */
-const cv=document.getElementById('starfield'),cx=cv.getContext('2d');
+const _sc=Canvas.get2d('starfield'),cv=_sc.canvas,cx=_sc.ctx;
 let stars=[],farStars=[],galaxyPts=[],shooters=[],dust=[];
 function resizeCV(){
-  cv.width=innerWidth*devicePixelRatio;cv.height=innerHeight*devicePixelRatio;
-  cv.style.width=innerWidth+'px';cv.style.height=innerHeight+'px';
+  const v=Platform.viewport();
+  cv.width=v.w*v.dpr;cv.height=v.h*v.dpr;
+  cv.style.width=v.w+'px';cv.style.height=v.h+'px';
 }
 function initStars(){
   const W=cv.width,H=cv.height;
@@ -1207,6 +1366,8 @@ function renderHome(){
         for(const k of ['3x3','4x4','5x5','6x6']){if(b[k]){s=DIFFS.orbit.find(d=>d.key===k).label+':'+b[k]+'s';break}}
       }else if(p.id==='focus'){
         for(const k of ['dew','breeze','storm']){if(b[k]){s=DIFFS.focus.find(d=>d.key===k).label+':'+(b[k]*100).toFixed(0)+'%';break}}
+      }else if(p.id==='pulse'){
+        for(const k of ['spark','flux','surge']){if(b[k]){s=DIFFS.pulse.find(d=>d.key===k).label+':'+(b[k]*100).toFixed(0)+'%';break}}
       }
       if(s)best='<div class="planet-best">'+s+'</div>';
     }
@@ -1247,6 +1408,8 @@ function openSetup(id,tour){
   document.getElementById('setup-name').textContent=p.name;
   document.getElementById('setup-desc').textContent=p.desc;
   document.getElementById('setup-target').textContent=p.target;
+  var sr=document.getElementById('setup-rule');
+  if(sr)sr.style.display=(curMode==='focus')?'flex':'none';
   var badge=document.getElementById('setup-tour-badge');
   if(badge){
     if(isTour){
@@ -1275,7 +1438,7 @@ function openSetup(id,tour){
 function updateDiffBest(){
   const b=D.modeBests[curMode]?D.modeBests[curMode][curDiff]:null;
   const el=document.getElementById('diff-best');
-  if(curMode==='focus'){
+  if(curMode==='focus'||curMode==='pulse'){
     el.innerHTML=b?'最快记录: <span class="bt">'+(b*100).toFixed(0)+'%</span>':'无记录 · 待首次校准';
   }else{
     el.innerHTML=b?'最快记录: <span class="bt">'+b+'s</span>':'无记录 · 待首次校准';
@@ -1337,6 +1500,7 @@ function generatePositions(count,fieldW,fieldH){
 function startGame(modeId,diffKey,tour){
   curMode=modeId;curDiff=diffKey;isTour=!!tour;
   if(curMode==='focus'){startFocusGame(modeId,diffKey,tour);return;}
+  if(curMode==='pulse'){startPulseGame(modeId,diffKey,tour);return;}
   const diff=DIFFS.orbit.find(d=>d.key===diffKey);
   G.N=diff.N;G.total=diff.N;G.next=1;G.errors=0;G.errPenalty=diff.errPenalty;G.float=diff.float;
   
@@ -1403,7 +1567,7 @@ function handleTap(cell,num){
     cell.classList.add('correct');
     createParticles(cell);createRing(cell);
     createTrail(cell);
-    playSound('correct');
+    Sound.play('correct');
     var ga=document.getElementById('game-area');if(ga){ga.classList.add('shake-screen');setTimeout(function(){ga.classList.remove('shake-screen')},150);}
     G.next++;
     document.getElementById('next-num').textContent=G.next<=G.total?G.next:'✓';
@@ -1416,8 +1580,8 @@ function handleTap(cell,num){
   }else{
     cell.classList.add('glitch');
     setTimeout(()=>cell.classList.remove('glitch'),400);
-    playSound('wrong');
-    if(D.settings.vibration&&navigator.vibrate)navigator.vibrate(80);
+    Sound.play('wrong');
+    if(D.settings.vibration)Haptics.vibrate(80);
     G.errors++;
   }
 }
@@ -1510,7 +1674,7 @@ function genTargetSchedule(duration){
 var FG={active:false,startTime:0,duration:90,spawnInterval:1.5,baseSpeed:45,maxSpores:8,
   spores:[],spawnedCount:0,processed:0,errors:0,missed:0,combo:0,maxCombo:0,
   spawnTimer:null,rafId:null,targetColor:'red',targetSchedule:[],schedIdx:0,
-  graceEnd:0,warningActive:false};
+  graceEnd:0,warningActive:false,colorBag:[]};
 var dragInfo=null;
 
 function startFocusGame(modeId,diffKey,tour){
@@ -1519,7 +1683,7 @@ function startFocusGame(modeId,diffKey,tour){
   FG.active=false;FG.duration=diff.duration;FG.spawnInterval=diff.spawnInterval;
   FG.baseSpeed=diff.speed;FG.maxSpores=diff.maxSpores;
   FG.spores=[];FG.spawnedCount=0;FG.processed=0;FG.errors=0;FG.missed=0;
-  FG.combo=0;FG.maxCombo=0;FG.spawnTimer=null;FG.rafId=null;
+  FG.combo=0;FG.maxCombo=0;FG.spawnTimer=null;FG.rafId=null;FG.colorBag=[];
   FG.targetSchedule=genTargetSchedule(diff.duration);FG.schedIdx=0;
   FG.graceEnd=0;FG.warningActive=false;dragInfo=null;
 
@@ -1549,10 +1713,9 @@ function updateMembraneColor(color){
   mem.style.setProperty('--mc','rgba('+rgb+',0.15)');
   mem.style.setProperty('--mb','rgba('+rgb+',0.45)');
   mem.style.setProperty('--mg','rgba('+rgb+',0.2)');
-  var compInfo=COLOR_INFO[info.complement];
-  var tc=document.getElementById('target-color');
-  tc.textContent=compInfo.name;
-  tc.style.color='rgba('+compInfo.rgb+',0.9)';
+  // 仅标注膜囊自身显色，不直接给出应拖入的互补色（玩家对照规则面板自行判断）
+  var mc=document.getElementById('membrane-color');
+  if(mc){mc.textContent=info.name;mc.style.color='rgba('+rgb+',0.9)';}
 }
 
 function scheduleNextSpawn(){
@@ -1563,12 +1726,21 @@ function scheduleNextSpawn(){
   FG.spawnTimer=setTimeout(function(){spawnSpore();scheduleNextSpawn();},FG.spawnInterval*1000);
 }
 
+function nextSporeColor(){
+  // 洗牌袋：保证 4 色在整个游戏内均匀出现，避免纯随机导致分布偏斜
+  if(FG.colorBag.length===0){
+    FG.colorBag=SPORE_COLORS.slice();
+    for(var i=FG.colorBag.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=FG.colorBag[i];FG.colorBag[i]=FG.colorBag[j];FG.colorBag[j]=t;}
+  }
+  return FG.colorBag.pop();
+}
+
 function spawnSpore(){
   if(!FG.active)return;
   var elapsed=(Date.now()-FG.startTime)/1000;
   if(elapsed>=FG.duration||FG.spores.length>=FG.maxSpores)return;
   FG.spawnedCount++;
-  var color=SPORE_COLORS[Math.floor(Math.random()*4)];
+  var color=nextSporeColor();
   var layer=document.getElementById('spore-layer');
   var fw=layer.offsetWidth,fh=layer.offsetHeight;
   var x=fw*(0.15+Math.random()*0.7);
@@ -1678,7 +1850,8 @@ function onSporeUp(e){
   var oldComplement=FG.schedIdx>0?COLOR_INFO[FG.targetSchedule[FG.schedIdx-1].color].complement:null;
   var inGrace=Date.now()<FG.graceEnd;
   var isDragToMem=distMem<55;
-  var isSwipeLeft=dx>40&&dy<30&&vel>0.3;
+  // 左滑丢弃：向左侧位移为主（放宽阈值，去掉严格的纵向位移上限与高速度要求，手感更灵敏）
+  var isSwipeLeft=dx>26&&dx>dy*1.4&&vel>0.1;
 
   if(isDragToMem){
     if(spore.color===newComplement){
@@ -1712,8 +1885,8 @@ function collectSpore(spore){
   setTimeout(function(){mem.classList.remove('collect-pulse');},400);
   var info=COLOR_INFO[spore.color];
   createFocusParticles(spore.el,'rgba('+info.rgb+',1)',8);
-  playSound('correct');
-  if(D.settings.vibration&&navigator.vibrate)navigator.vibrate(30);
+  Sound.play('correct');
+  if(D.settings.vibration)Haptics.vibrate(30);
   updateFocusStats();
 }
 
@@ -1735,8 +1908,8 @@ function errorSpore(spore){
   var mem=document.getElementById('membrane');
   mem.classList.add('reject');
   setTimeout(function(){mem.classList.remove('reject');},400);
-  playSound('wrong');
-  if(D.settings.vibration&&navigator.vibrate)navigator.vibrate(80);
+  Sound.play('wrong');
+  if(D.settings.vibration)Haptics.vibrate(80);
   updateFocusStats();
 }
 
@@ -1772,12 +1945,20 @@ function updateFocusStats(){
   document.getElementById('game-combo').textContent='\u00d7'+FG.combo;
 }
 
+function clearFocusParticles(){
+  // 彻底清除游戏中散落的光点粒子，避免残留在结算/返回画面（position:fixed;z-index:9999）
+  var ps=document.querySelectorAll('.focus-particle');
+  for(var i=0;i<ps.length;i++){ps[i].remove();}
+  var sl=document.getElementById('spore-layer');if(sl)sl.innerHTML='';
+}
+
 function endFocusGame(){
   FG.active=false;
   if(FG.spawnTimer){clearTimeout(FG.spawnTimer);FG.spawnTimer=null;}
   if(FG.rafId){cancelAnimationFrame(FG.rafId);FG.rafId=null;}
   FG.spores.forEach(function(s){s.el.remove();});
   FG.spores=[];
+  clearFocusParticles();
   document.getElementById('membrane').classList.remove('warning');
   showFocusResult();
 }
@@ -1847,6 +2028,7 @@ function cleanupFocus(){
   if(FG.rafId){cancelAnimationFrame(FG.rafId);FG.rafId=null;}
   FG.spores.forEach(function(s){s.el.remove();});
   FG.spores=[];
+  clearFocusParticles();
   if(dragInfo){
     var sp=dragInfo.spore;
     if(sp&&sp.el){
@@ -1859,6 +2041,283 @@ function cleanupFocus(){
   }
   document.getElementById('membrane').classList.remove('warning','attracting','reject','collect-pulse');
   document.getElementById('focus-area').style.display='none';
+  document.getElementById('game-stats').style.display='none';
+  document.getElementById('game-area').style.display='';
+  document.getElementById('game-next-wrap').style.display='';
+}
+
+/* ===== Pulse Game — 神经脉冲 (脉冲分流 / 规则翻转) ===== */
+var GROUP_A=['red','blue'];   // 规则A: 该组 → 左端口
+var GROUP_B=['green','gold']; // 规则A: 该组 → 右端口
+var dragPulse=null;
+function targetPortFor(color,rule){
+  var inA=GROUP_A.indexOf(color)>=0;
+  return rule==='A'?(inA?'left':'right'):(inA?'right':'left');
+}
+var PG={active:false,startTime:0,duration:75,spawnInterval:1.8,maxPulses:5,flipInterval:22,grace:3.5,pulseLife:5,
+  pulses:[],spawnedCount:0,processed:0,errors:0,missed:0,combo:0,maxCombo:0,
+  spawnTimer:null,rafId:null,rule:'A',nextFlip:0,warnActive:false,graceEnd:0};
+
+function startPulseGame(modeId,diffKey,tour){
+  curMode=modeId;curDiff=diffKey;isTour=!!tour;
+  var diff=DIFFS.pulse.find(function(d){return d.key===diffKey});
+  PG.active=false;PG.duration=diff.duration;PG.spawnInterval=diff.spawnInterval;
+  PG.maxPulses=diff.maxPulses;PG.flipInterval=diff.flipInterval;PG.grace=diff.grace;PG.pulseLife=diff.pulseLife;
+  PG.pulses=[];PG.spawnedCount=0;PG.processed=0;PG.errors=0;PG.missed=0;
+  PG.combo=0;PG.maxCombo=0;PG.spawnTimer=null;PG.rafId=null;
+  PG.rule='A';PG.nextFlip=diff.flipInterval;PG.warnActive=false;PG.graceEnd=0;dragPulse=null;
+
+  document.getElementById('game-area').style.display='none';
+  document.getElementById('focus-area').style.display='none';
+  document.getElementById('pulse-area').style.display='block';
+  document.getElementById('game-next-wrap').style.display='none';
+  document.getElementById('game-stats').style.display='block';
+  document.getElementById('game-timer').textContent=PG.duration.toFixed(1)+'s';
+  updatePulseStats();
+  document.getElementById('pulse-layer').innerHTML='';
+  document.getElementById('port-left').classList.remove('warning','flip-in');
+  document.getElementById('port-right').classList.remove('warning','flip-in');
+  updatePulseRule();
+
+  startCountdown(function(){
+    PG.active=true;PG.startTime=Date.now();
+    scheduleNextPulse();
+    PG.rafId=requestAnimationFrame(pulseLoop);
+  });
+  showScreen('screen-game');
+}
+
+function updatePulseRule(){
+  document.getElementById('rule-left').textContent=PG.rule==='A'?'左':'右';
+  document.getElementById('rule-right').textContent=PG.rule==='A'?'右':'左';
+}
+
+function scheduleNextPulse(){
+  if(!PG.active)return;
+  var elapsed=(Date.now()-PG.startTime)/1000;
+  if(elapsed>=PG.duration)return;
+  if(PG.pulses.length>=PG.maxPulses){PG.spawnTimer=setTimeout(scheduleNextPulse,200);return;}
+  PG.spawnTimer=setTimeout(function(){spawnPulse();scheduleNextPulse();},PG.spawnInterval*1000);
+}
+
+function spawnPulse(){
+  if(!PG.active)return;
+  var elapsed=(Date.now()-PG.startTime)/1000;
+  if(elapsed>=PG.duration||PG.pulses.length>=PG.maxPulses)return;
+  PG.spawnedCount++;
+  var color=SPORE_COLORS[Math.floor(Math.random()*4)];
+  var layer=document.getElementById('pulse-layer');
+  var core=document.getElementById('pulse-core');
+  var cr=core.getBoundingClientRect(),lr=layer.getBoundingClientRect();
+  var cx=cr.left+cr.width/2-lr.left+(Math.random()-0.5)*18;
+  var cy=cr.top+cr.height/2-lr.top+(Math.random()-0.5)*18;
+  var el=document.createElement('div');
+  el.className='spore spore-'+color;
+  el.innerHTML='<div class="spore-shape"></div>';
+  el.style.left=cx+'px';el.style.top=cy+'px';
+  var pulse={el:el,color:color,x:cx,y:cy,born:Date.now(),state:'alive'};
+  el.addEventListener('pointerdown',function(e){onPulseDown(e,pulse);});
+  layer.appendChild(el);
+  PG.pulses.push(pulse);
+}
+
+function pulseLoop(){
+  if(!PG.active)return;
+  var now=Date.now();
+  var elapsed=(now-PG.startTime)/1000;
+  if(elapsed>=PG.duration){endPulseGame();return;}
+  document.getElementById('game-timer').textContent=(PG.duration-elapsed).toFixed(1)+'s';
+
+  if(elapsed>=PG.nextFlip-PG.grace && !PG.warnActive){
+    PG.warnActive=true;
+    document.getElementById('port-left').classList.add('warning');
+    document.getElementById('port-right').classList.add('warning');
+  }
+  if(elapsed>=PG.nextFlip){
+    PG.rule=PG.rule==='A'?'B':'A';
+    PG.warnActive=false;
+    document.getElementById('port-left').classList.remove('warning');
+    document.getElementById('port-right').classList.remove('warning');
+    var l=document.getElementById('port-left'),r=document.getElementById('port-right');
+    l.classList.add('flip-in');r.classList.add('flip-in');
+    setTimeout(function(){l.classList.remove('flip-in');r.classList.remove('flip-in');},400);
+    var fl=document.getElementById('pulse-flash');fl.classList.remove('active');void fl.offsetWidth;fl.classList.add('active');
+    PG.graceEnd=now+PG.grace*1000;
+    PG.nextFlip+=PG.flipInterval;
+    updatePulseRule();
+  }
+
+  for(var i=PG.pulses.length-1;i>=0;i--){
+    var p=PG.pulses[i];
+    if(p.state!=='alive')continue;
+    if((now-p.born)/1000>=PG.pulseLife){
+      p.state='missed';p.el.classList.add('missed');
+      (function(el){setTimeout(function(){el.remove();},500);})(p.el);
+      PG.pulses.splice(i,1);PG.missed++;updatePulseStats();
+    }
+  }
+  PG.rafId=requestAnimationFrame(pulseLoop);
+}
+
+function onPulseDown(e,pulse){
+  e.preventDefault();
+  if(!PG.active||pulse.state!=='alive')return;
+  pulse.state='dragging';pulse.el.classList.add('dragging');
+  try{pulse.el.setPointerCapture(e.pointerId);}catch(err){}
+  dragPulse={pulse:pulse,startX:e.clientX,startY:e.clientY,startTime:Date.now(),pointerId:e.pointerId};
+  pulse.el.addEventListener('pointermove',onPulseMove);
+  pulse.el.addEventListener('pointerup',onPulseUp);
+  pulse.el.addEventListener('pointercancel',onPulseUp);
+}
+function onPulseMove(e){
+  if(!dragPulse)return;
+  var pulse=dragPulse.pulse;
+  var layer=document.getElementById('pulse-layer');
+  var rect=layer.getBoundingClientRect();
+  pulse.x=e.clientX-rect.left;pulse.y=e.clientY-rect.top;
+  pulse.el.style.left=pulse.x+'px';pulse.el.style.top=pulse.y+'px';
+}
+function onPulseUp(e){
+  if(!dragPulse)return;
+  var pulse=dragPulse.pulse;
+  pulse.el.classList.remove('dragging');
+  pulse.el.removeEventListener('pointermove',onPulseMove);
+  pulse.el.removeEventListener('pointerup',onPulseUp);
+  pulse.el.removeEventListener('pointercancel',onPulseUp);
+  var pl=document.getElementById('port-left'),pr=document.getElementById('port-right');
+  var lrect=pl.getBoundingClientRect(),rrect=pr.getBoundingClientRect();
+  var lc={x:lrect.left+lrect.width/2,y:lrect.top+lrect.height/2};
+  var rc={x:rrect.left+rrect.width/2,y:rrect.top+rrect.height/2};
+  var distL=Math.hypot(e.clientX-lc.x,e.clientY-lc.y);
+  var distR=Math.hypot(e.clientX-rc.x,e.clientY-rc.y);
+  var dropped=null;
+  if(distL<48)dropped='left';else if(distR<48)dropped='right';
+  var target=targetPortFor(pulse.color,PG.rule);
+  var oldRule=PG.rule==='A'?'B':'A';
+  var oldTarget=targetPortFor(pulse.color,oldRule);
+  var inGrace=Date.now()<PG.graceEnd;
+  if(dropped){
+    if(dropped===target){collectPulse(pulse);}
+    else if(inGrace&&dropped===oldTarget){gracePulse(pulse);}
+    else{errorPulse(pulse);}
+  }else{
+    pulse.state='alive';
+  }
+  dragPulse=null;
+}
+function collectPulse(pulse){
+  pulse.state='collected';pulse.el.classList.add('collected');
+  (function(el){setTimeout(function(){el.remove();},400);})(pulse.el);
+  var idx=PG.pulses.indexOf(pulse);if(idx>=0)PG.pulses.splice(idx,1);
+  PG.processed++;PG.combo++;if(PG.combo>PG.maxCombo)PG.maxCombo=PG.combo;
+  var info=COLOR_INFO[pulse.color];
+  createFocusParticles(pulse.el,'rgba('+info.rgb+',1)',8);
+  Sound.play('correct');
+  if(D.settings.vibration)Haptics.vibrate(30);
+  updatePulseStats();
+}
+function errorPulse(pulse){
+  pulse.state='error';pulse.el.classList.add('error-flash');
+  (function(el){setTimeout(function(){el.remove();},400);})(pulse.el);
+  var idx=PG.pulses.indexOf(pulse);if(idx>=0)PG.pulses.splice(idx,1);
+  PG.errors++;PG.combo=0;
+  Sound.play('wrong');
+  if(D.settings.vibration)Haptics.vibrate(80);
+  updatePulseStats();
+}
+function gracePulse(pulse){
+  pulse.state='error';pulse.el.classList.add('error-flash');
+  (function(el){setTimeout(function(){el.remove();},400);})(pulse.el);
+  var idx=PG.pulses.indexOf(pulse);if(idx>=0)PG.pulses.splice(idx,1);
+  PG.combo=0;updatePulseStats();
+}
+function updatePulseStats(){
+  var total=PG.processed+PG.errors+PG.missed;
+  var acc=total>0?Math.round(PG.processed/total*100):100;
+  document.getElementById('game-accuracy').textContent=acc+'%';
+  document.getElementById('game-combo').textContent='×'+PG.combo;
+}
+function endPulseGame(){
+  PG.active=false;
+  if(PG.spawnTimer){clearTimeout(PG.spawnTimer);PG.spawnTimer=null;}
+  if(PG.rafId){cancelAnimationFrame(PG.rafId);PG.rafId=null;}
+  PG.pulses.forEach(function(s){s.el.remove();});
+  PG.pulses=[];
+  document.getElementById('port-left').classList.remove('warning','flip-in');
+  document.getElementById('port-right').classList.remove('warning','flip-in');
+  showPulseResult();
+}
+function showPulseResult(){
+  var total=PG.processed+PG.errors+PG.missed;
+  var accuracy=total>0?PG.processed/total:0;
+  var rt=calcPulseRating(accuracy,PG.errors,curDiff);
+  var st=STARS[rt],p=PLANETS.find(function(x){return x.id===curMode}),
+      df=DIFFS.pulse.find(function(d){return d.key===curDiff});
+  if(!D.modeBests.pulse)D.modeBests.pulse={};
+  var prev=D.modeBests.pulse[curDiff];
+  var isBest=!prev||accuracy>prev;
+  if(isBest)D.modeBests.pulse[curDiff]=accuracy;
+  D.totalStars+=st;D.totalSessions++;
+  D.sessions.push({mode:curMode,diff:curDiff,rating:rt,accuracy:accuracy,errors:PG.errors,date:todayStr()});
+  if(D.sessions.length>50)D.sessions=D.sessions.slice(-50);
+  D.todayFreeSeconds+=Math.round(PG.duration);
+  var ci='';
+  if(isTour&&!D.todayCompleted&&tourIdx>=tourPlanets.length-1){
+    D.todayCompleted=true;D.todayCompletedDate=todayStr();doCheckIn();
+    ci='突触回路已激活 · '+D.streak+'周期连续';
+  }else if(!isTour&&!D.todayCompleted&&D.todayFreeSeconds>=900){
+    D.todayCompleted=true;D.todayCompletedDate=todayStr();doCheckIn();
+    ci='累计自由15分钟 · '+D.streak+'周期连续';
+  }
+  saveData();
+  document.getElementById('result-label').textContent=p.mode+' · '+df.label;
+  var re=document.getElementById('result-rating');re.textContent=rt;re.className='result-rating '+rt;
+  document.getElementById('result-time').innerHTML=(accuracy*100).toFixed(1)+'<span class="unit">%</span>';
+  document.getElementById('new-peak').style.display=isBest?'block':'none';
+  document.getElementById('result-quantum').textContent='+'+st+' 量子';
+  var info='<span>正确处理 '+PG.processed+'</span>';
+  if(PG.errors>0)info+='<span>误操作 ×'+PG.errors+'</span>';
+  info+='<span>遗漏 ×'+PG.missed+'</span>';
+  info+='<span>最高连击 ×'+PG.maxCombo+'</span>';
+  if(prev)info+='<span>前次最佳 '+(prev*100).toFixed(1)+'%</span>';
+  document.getElementById('result-info').innerHTML=info;
+  var ce=document.getElementById('result-checkin');
+  if(ci){ce.style.display='block';ce.textContent=ci;}else ce.style.display='none';
+  document.getElementById('btn-home').textContent=(isTour&&tourIdx<tourPlanets.length-1)?'继续巡礼':'回归星域';
+  document.getElementById('pulse-area').style.display='none';
+  document.getElementById('game-stats').style.display='none';
+  document.getElementById('game-area').style.display='';
+  document.getElementById('game-next-wrap').style.display='';
+  showScreen('screen-result');
+}
+function calcPulseRating(acc,errors,dk){
+  var d=DIFFS.pulse.find(function(x){return x.key===dk});
+  if(errors>=5&&acc>=d.r.B)return'B';
+  if(errors>=5)return'C';
+  if(acc>=d.r.S&&errors===0)return'S';
+  if(acc>=d.r.A)return'A';
+  if(acc>=d.r.B)return'B';
+  return'C';
+}
+function cleanupPulse(){
+  PG.active=false;
+  if(PG.spawnTimer){clearTimeout(PG.spawnTimer);PG.spawnTimer=null;}
+  if(PG.rafId){cancelAnimationFrame(PG.rafId);PG.rafId=null;}
+  PG.pulses.forEach(function(s){s.el.remove();});
+  PG.pulses=[];
+  if(dragPulse){
+    var sp=dragPulse.pulse;
+    if(sp&&sp.el){
+      sp.el.classList.remove('dragging');
+      sp.el.removeEventListener('pointermove',onPulseMove);
+      sp.el.removeEventListener('pointerup',onPulseUp);
+      sp.el.removeEventListener('pointercancel',onPulseUp);
+    }
+    dragPulse=null;
+  }
+  document.getElementById('port-left').classList.remove('warning','flip-in');
+  document.getElementById('port-right').classList.remove('warning','flip-in');
+  document.getElementById('pulse-area').style.display='none';
   document.getElementById('game-stats').style.display='none';
   document.getElementById('game-area').style.display='';
   document.getElementById('game-next-wrap').style.display='';
@@ -1912,28 +2371,7 @@ function doCheckIn(){
   if(b)D.totalStars+=b;
 }
 
-/* ===== Sound ===== */
-let ac=null;
-function playSound(type){
-  if(!D.settings.sound)return;
-  try{
-    if(!ac)ac=new(window.AudioContext||window.webkitAudioContext)();
-    const o=ac.createOscillator(),g=ac.createGain();
-    o.connect(g);g.connect(ac.destination);
-    if(type==='correct'){
-      o.frequency.setValueAtTime(600,ac.currentTime);
-      o.frequency.exponentialRampToValueAtTime(1000,ac.currentTime+0.1);
-      o.type='sine';g.gain.setValueAtTime(0.08,ac.currentTime);
-      g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+0.15);
-      o.start();o.stop(ac.currentTime+0.15);
-    }else{
-      o.frequency.value=180;o.type='sawtooth';
-      g.gain.setValueAtTime(0.06,ac.currentTime);
-      g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+0.2);
-      o.start();o.stop(ac.currentTime+0.2);
-    }
-  }catch(e){}
-}
+/* ===== Sound（实现见 Platform Adapter Layer: const Sound） ===== */
 
 /* ===== Toast ===== */
 let tt=null;
@@ -1960,7 +2398,7 @@ document.getElementById('t-vibration').addEventListener('click',function(){D.set
 document.getElementById('t-fixation').addEventListener('click',function(){D.settings.fixation=!D.settings.fixation;this.classList.toggle('on',D.settings.fixation);saveData()});
 document.getElementById('btn-reset').addEventListener('click',()=>{
   if(confirm('确认清除所有突触印记？此操作不可逆。')){
-    localStorage.removeItem(STORE_KEY);D=loadData();closeSettings();renderHome();showToast('突触印记已清除');
+    Store.remove(STORE_KEY);D=loadData();closeSettings();renderHome();showToast('突触印记已清除');
   }
 });
 document.getElementById('core-tour').addEventListener('click',()=>{
@@ -1981,7 +2419,7 @@ document.getElementById('start-game-btn').addEventListener('click',()=>startGame
 document.getElementById('game-back').addEventListener('click',()=>{
   if(confirm('确认中断神经序列？')){
     clearInterval(G.timer);
-    if(curMode==='focus')cleanupFocus();
+    if(curMode==='focus')cleanupFocus();else if(curMode==='pulse')cleanupPulse();
     renderHome();showScreen('screen-home');
   }
 });
@@ -1995,7 +2433,7 @@ document.getElementById('btn-home').addEventListener('click',()=>{
   }
 });
 document.body.addEventListener('touchmove',e=>{if(e.touches.length>1)e.preventDefault()},{passive:false});
-window.addEventListener('resize',()=>{resizeCV();initStars()});
+Canvas.onResize(()=>{resizeCV();initStars()});
 
 /* ===== Init ===== */
 resizeCV();initStars();animStars();renderHome();
