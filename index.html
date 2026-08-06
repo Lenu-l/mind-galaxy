@@ -1106,6 +1106,7 @@ body::after{
       <div class="rp-row"><span class="rp-shape spore-red"><div class="spore-shape"></div></span><span class="rp-name" style="color:rgba(255,68,68,0.9)">赤红</span><span class="rp-arrow">↔</span><span class="rp-shape spore-green"><div class="spore-shape"></div></span><span class="rp-name" style="color:rgba(57,255,20,0.9)">翠绿</span></div>
       <div class="rp-row"><span class="rp-shape spore-blue"><div class="spore-shape"></div></span><span class="rp-name" style="color:rgba(68,136,255,0.9)">湛蓝</span><span class="rp-arrow">↔</span><span class="rp-shape spore-gold"><div class="spore-shape"></div></span><span class="rp-name" style="color:rgba(255,215,0,0.9)">金黄</span></div>
       <div class="rp-note">膜囊显何色，即拖入其互补色</div>
+      <div class="rp-note" style="margin-top:4px;color:rgba(255,255,255,0.5)">其余颜色 · 左滑划走</div>
     </div>
     <div class="diff-selector" id="diff-selector"></div>
     <div class="diff-best" id="diff-best">选择强度查看峰值</div>
@@ -1133,6 +1134,7 @@ body::after{
       <div class="rp-row"><span class="rp-shape spore-red"><div class="spore-shape"></div></span><span class="rp-name" style="color:rgba(255,68,68,0.9)">赤红</span><span class="rp-arrow">↔</span><span class="rp-shape spore-green"><div class="spore-shape"></div></span><span class="rp-name" style="color:rgba(57,255,20,0.9)">翠绿</span></div>
       <div class="rp-row"><span class="rp-shape spore-blue"><div class="spore-shape"></div></span><span class="rp-name" style="color:rgba(68,136,255,0.9)">湛蓝</span><span class="rp-arrow">↔</span><span class="rp-shape spore-gold"><div class="spore-shape"></div></span><span class="rp-name" style="color:rgba(255,215,0,0.9)">金黄</span></div>
       <div class="rp-note">膜囊显何色，即拖入其互补色</div>
+      <div class="rp-note" style="margin-top:4px;color:rgba(255,255,255,0.5)">其余颜色 · 左滑划走</div>
     </div>
     <div class="membrane" id="membrane"></div>
     <div class="membrane-hint" id="membrane-hint">膜囊显色 <span class="target-color" id="membrane-color">赤红</span></div>
@@ -1222,7 +1224,7 @@ const PLANETS=[
    desc:'圆盘上随机分布数字1-N，按顺序依次点击。眼睛固定中心，用余光感知数字位置。',
    target:'视觉搜索 · 选择性注意'},
   {id:'focus',name:'宁静星',mode:'杂念捕手',mat:'bio',color:'#39FF14',status:'active',
-   desc:'四色孢子飘浮，拖互补色入膜囊，划走其余三种。色轮切换考验惯性抑制。',
+   desc:'四色孢子飘浮。拖互补色入膜囊，其余左滑划走。色轮切换考验惯性抑制。',
    target:'抑制控制 · 冲动抑制'},
   {id:'pulse',name:'裂变星',mode:'神经脉冲',mat:'plasma',color:'#00F0FF',status:'locked',
    desc:'脉冲从中心生成，滑动引导到正确端口。规则会动态翻转。',
