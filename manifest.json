@@ -1,0 +1,19 @@
+{
+  "name": "意识星系 · Mind Galaxy",
+  "short_name": "意识星系",
+  "description": "前额叶执行功能训练 · 原型版",
+  "start_url": "/mind-galaxy/",
+  "scope": "/mind-galaxy/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#0A0E27",
+  "background_color": "#0A0E27",
+  "icons": [
+    {
+      "src": "icon-180.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
