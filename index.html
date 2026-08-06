@@ -1058,6 +1058,12 @@ body::after{
         <circle cx="12" cy="12" r="2.5"/>
       </svg>
     </div>
+    <div class="icon-btn" id="btn-refresh" title="刷新页面">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M1 4v6h6"/><path d="M23 20v-6h-6"/>
+        <path d="M20.49 9A9 9 0 005.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 013.51 15"/>
+      </svg>
+    </div>
   </div>
   <div class="home-content">
     <div class="status-text" id="status-text">突触回路待激活</div>
@@ -3285,6 +3291,19 @@ document.getElementById('btn-home').addEventListener('click',()=>{
 });
 document.body.addEventListener('touchmove',e=>{if(e.touches.length>1)e.preventDefault()},{passive:false});
 Canvas.onResize(()=>{resizeCV();initStars()});
+
+// Service Worker — offline cache
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('/sw.js').catch(()=>{});
+}
+// Refresh button — clear cache and force reload
+document.getElementById('btn-refresh').addEventListener('click',()=>{
+  if('serviceWorker' in navigator && navigator.serviceWorker.controller){
+    navigator.serviceWorker.controller.postMessage('force-refresh');
+  }else{
+    location.reload(true);
+  }
+});
 
 /* ===== Init ===== */
 resizeCV();initStars();animStars();renderHome();
