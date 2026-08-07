@@ -5,11 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="theme-color" content="#0A0E27">
-  <meta name="apple-mobile-web-app-title" content="意识星系">
-  <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
-  <link rel="manifest" href="manifest.json">
-  <title>意识星系 · Mind Galaxy</title>
+<meta name="theme-color" content="#0A0E27">
+<title>意识星系 · Mind Galaxy</title>
 <style>
 /* ===== Variables ===== */
 :root{
@@ -18,6 +15,7 @@
   --focus:#39FF14;
   --pulse:#00F0FF;
   --corridor:#B026FF;
+  --furnace:#FF6B35;
   --dual:#FFAA00;
   --text:#fff;
   --dim:rgba(255,255,255,0.5);
@@ -85,12 +83,12 @@ body::after{
 /* ===== Top Bar ===== */
 .topbar{
   display:flex;align-items:center;justify-content:space-between;
-  padding:14px 20px;padding-top:max(14px,env(safe-area-inset-top));
+  padding:8px 16px;padding-top:max(8px,env(safe-area-inset-top));
   flex-shrink:0;
 }
 .streak-indicator{
   display:flex;align-items:center;gap:7px;
-  font-size:13px;font-weight:600;color:var(--dim);
+  font-size:12px;font-weight:600;color:var(--dim);
 }
 .streak-dot{
   width:6px;height:6px;border-radius:50%;
@@ -100,35 +98,35 @@ body::after{
 }
 @keyframes streak-pulse{0%,100%{opacity:.5}50%{opacity:1}}
 .app-title{
-  font-size:14px;font-weight:400;letter-spacing:4px;color:var(--faint);
+  font-size:12px;font-weight:400;letter-spacing:3px;color:var(--faint);
 }
 .icon-btn{
-  width:34px;height:34px;
+  width:30px;height:30px;
   display:flex;align-items:center;justify-content:center;
   cursor:pointer;color:var(--dim);transition:color .2s;
 }
 .icon-btn:active{color:var(--text)}
-.icon-btn svg{width:18px;height:18px}
+.icon-btn svg{width:16px;height:16px}
 
 /* ===== Home Content ===== */
 .home-content{
   flex:1;display:flex;flex-direction:column;
-  padding:0 20px 24px;gap:20px;
+  padding:0 16px 16px;gap:12px;
 }
 
 /* Status text */
 .status-text{
-  text-align:center;font-size:13px;color:var(--faint);
+  text-align:center;font-size:12px;color:var(--faint);
   letter-spacing:1px;line-height:1.6;
 }
 .status-text .highlight{color:var(--orbit)}
 
 /* Dual Core Container */
-.dual-core{display:flex;gap:16px;justify-content:center;align-items:center;margin:6px 0 2px}
+.dual-core{display:flex;gap:12px;justify-content:center;align-items:center;margin:2px 0 0}
 
 /* Energy Core */
 .energy-core{
-  width:128px;height:128px;border-radius:50%;
+  width:100px;height:100px;border-radius:50%;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   cursor:pointer;position:relative;
   background:radial-gradient(circle at 50% 50%,rgba(255,255,255,0.08),rgba(255,255,255,0.02) 60%,transparent);
@@ -136,18 +134,18 @@ body::after{
   transition:transform .2s,box-shadow .2s,border-color .3s;
 }
 .energy-core::before{
-  content:'';position:absolute;inset:-3px;border-radius:50%;
+  content:'';position:absolute;inset:-2px;border-radius:50%;
   border:1px solid rgba(255,255,255,0.06);
   animation:core-pulse 3s ease-in-out infinite;
 }
 .energy-core::after{
-  content:'';position:absolute;inset:-12px;border-radius:50%;
+  content:'';position:absolute;inset:-8px;border-radius:50%;
   border:1px solid rgba(255,255,255,0.03);
 }
 @keyframes core-pulse{0%,100%{transform:scale(1);opacity:.4}50%{transform:scale(1.04);opacity:.8}}
 .energy-core:active{transform:scale(.94);box-shadow:0 0 40px rgba(255,255,255,0.1)}
-.energy-core .core-label{font-size:13px;font-weight:600;letter-spacing:2px;color:var(--text)}
-.energy-core .core-sub{font-size:9px;color:var(--faint);margin-top:3px;letter-spacing:1px}
+.energy-core .core-label{font-size:12px;font-weight:600;letter-spacing:1px;color:var(--text)}
+.energy-core .core-sub{font-size:8px;color:var(--faint);margin-top:2px;letter-spacing:1px}
 
 /* Tour core — amber gold */
 .energy-core.tour-core{
@@ -188,7 +186,7 @@ body::after{
 /* Divider */
 .divider{
   display:flex;align-items:center;gap:12px;
-  color:var(--faint);font-size:11px;letter-spacing:2px;
+  color:var(--faint);font-size:10px;letter-spacing:2px;
 }
 .divider::before,.divider::after{
   content:'';flex:1;height:1px;
@@ -198,7 +196,7 @@ body::after{
 /* ===== Planet Orbs ===== */
 .planet-grid{
   display:grid;grid-template-columns:repeat(2,1fr);
-  gap:24px 16px;
+  gap:12px 10px;
 }
 .planet-item{
   display:flex;flex-direction:column;align-items:center;
@@ -210,9 +208,9 @@ body::after{
 .planet-item.locked .planet-orb{opacity:.55;filter:saturate(.5) brightness(.65)}
 .planet-item.locked .planet-name{color:rgba(255,255,255,0.5)}
 .planet-orb{
-  width:62px;height:62px;border-radius:50%;
+  width:48px;height:48px;border-radius:50%;
   position:relative;overflow:hidden;
-  margin-bottom:8px;
+  margin-bottom:5px;
   transition:box-shadow .3s;
 }
 .planet-item.active .planet-orb{
@@ -223,31 +221,31 @@ body::after{
 /* Shared glow halo — every planet gets an outer luminous ring */
 .planet-orb{box-shadow:var(--orb-glow,0 0 0 transparent)}
 
-/* — Stellar Metal (秩序星) — Warm gold planet with surface bands */
+/* — Stellar Metal (秩序星) — Cosmic blue planet with surface bands */
 .orb-stellar{
-  --glow-rgb:255,184,0;
+  --glow-rgb:68,136,255;
   background:
-    radial-gradient(circle at 32% 26%,rgba(255,235,160,0.35),transparent 50%),
+    radial-gradient(circle at 32% 26%,rgba(160,200,255,0.35),transparent 50%),
     repeating-linear-gradient(6deg,
-      rgba(140,105,35,0.18) 0px,rgba(140,105,35,0.18) 2px,
-      rgba(120,88,26,0.12) 2px,rgba(120,88,26,0.12) 5px,
-      rgba(155,115,40,0.15) 5px,rgba(155,115,40,0.15) 8px),
-    radial-gradient(circle at 50% 50%,#B08530,#785820 60%,#3A2A0E);
+      rgba(35,70,140,0.18) 0px,rgba(35,70,140,0.18) 2px,
+      rgba(26,55,120,0.12) 2px,rgba(26,55,120,0.12) 5px,
+      rgba(40,80,155,0.15) 5px,rgba(40,80,155,0.15) 8px),
+    radial-gradient(circle at 50% 50%,#3060B0,#184478 60%,#0E1A3A);
   box-shadow:
-    0 0 22px 3px rgba(255,184,0,0.28),
-    0 0 44px 10px rgba(255,184,0,0.14),
-    0 0 70px 16px rgba(255,184,0,0.06),
+    0 0 22px 3px rgba(68,136,255,0.28),
+    0 0 44px 10px rgba(68,136,255,0.14),
+    0 0 70px 16px rgba(68,136,255,0.06),
     inset -4px -4px 9px rgba(0,0,0,0.22),
-    inset 2px 2px 5px rgba(255,225,120,0.15);
+    inset 2px 2px 5px rgba(140,190,255,0.15);
 }
 .orb-stellar::before{
   content:'';position:absolute;width:140%;height:3px;
-  background:linear-gradient(90deg,transparent,rgba(190,145,48,0.28) 25%,rgba(210,160,56,0.14) 50%,rgba(190,145,48,0.28) 75%,transparent);
+  background:linear-gradient(90deg,transparent,rgba(48,100,185,0.28) 25%,rgba(56,120,210,0.14) 50%,rgba(48,100,185,0.28) 75%,transparent);
   top:36%;left:-20%;transform:rotate(-20deg);border-radius:50%;
 }
 .orb-stellar::after{
   content:'';position:absolute;width:128%;height:2px;
-  background:linear-gradient(90deg,transparent,rgba(165,120,36,0.18),transparent);
+  background:linear-gradient(90deg,transparent,rgba(36,80,165,0.18),transparent);
   top:58%;left:-14%;transform:rotate(-13deg);border-radius:50%;
 }
 
@@ -298,6 +296,34 @@ body::after{
   content:'';position:absolute;width:115%;height:2px;
   background:linear-gradient(90deg,transparent,rgba(40,110,120,0.16),transparent);
   top:64%;left:-8%;transform:rotate(-10deg);border-radius:50%;
+}
+
+/* — Molten Forge (熔铸星) — Molten orange planet with furnace glow */
+.orb-furnace{
+  --glow-rgb:255,107,53;
+  background:
+    radial-gradient(circle at 34% 28%,rgba(255,200,100,0.3),transparent 50%),
+    radial-gradient(circle at 65% 65%,rgba(255,107,53,0.2),transparent 40%),
+    repeating-linear-gradient(8deg,
+      rgba(120,50,15,0.18) 0px,rgba(120,50,15,0.18) 2px,
+      rgba(100,40,10,0.12) 2px,rgba(100,40,10,0.12) 5px),
+    radial-gradient(circle at 50% 50%,#8B4513,#5A2D0A 60%,#2A1505);
+  box-shadow:
+    0 0 22px 3px rgba(255,107,53,0.28),
+    0 0 44px 10px rgba(255,107,53,0.14),
+    0 0 70px 16px rgba(255,107,53,0.06),
+    inset -4px -4px 9px rgba(0,0,0,0.22),
+    inset 2px 2px 5px rgba(255,180,80,0.15);
+}
+.orb-furnace::before{
+  content:'';position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(circle at 55% 60%,rgba(255,107,53,0.15),transparent 40%);
+  animation:bio-flow 5s ease-in-out infinite;
+}
+.orb-furnace::after{
+  content:'';position:absolute;width:130%;height:3px;
+  background:linear-gradient(90deg,transparent,rgba(255,140,50,0.2),rgba(255,180,80,0.1),rgba(255,140,50,0.2),transparent);
+  top:42%;left:-15%;transform:rotate(-15deg);border-radius:50%;
 }
 
 /* — Crystal Refraction (回响星) — Luminous amethyst with facets */
@@ -351,12 +377,12 @@ body::after{
   top:50%;left:-15%;transform:rotate(-18deg);border-radius:50%;
 }
 
-.planet-name{font-size:13px;font-weight:600;margin-bottom:1px;letter-spacing:1px;color:var(--text)}
-.planet-mode{font-size:10px;color:rgba(255,255,255,0.65);margin-bottom:4px}
-.planet-status{font-size:9px;letter-spacing:1px}
+.planet-name{font-size:12px;font-weight:600;margin-bottom:1px;letter-spacing:1px;color:var(--text)}
+.planet-mode{font-size:9px;color:rgba(255,255,255,0.65);margin-bottom:3px}
+.planet-status{font-size:8px;letter-spacing:1px}
 .planet-status.active{color:var(--orbit)}
 .planet-status.locked{color:rgba(255,255,255,0.45)}
-.planet-best{font-size:9px;color:rgba(255,184,0,0.75);margin-top:2px}
+.planet-best{font-size:8px;color:rgba(255,184,0,0.75);margin-top:1px}
 
 /* Full width 5th planet */
 .planet-grid .full-width{grid-column:1/-1;max-width:180px;margin:0 auto}
@@ -364,7 +390,7 @@ body::after{
 /* ===== Progress Bar ===== */
 .progress-row{
   display:flex;align-items:center;justify-content:space-between;
-  font-size:11px;color:var(--faint);margin-bottom:6px;letter-spacing:1px;
+  font-size:10px;color:var(--faint);margin-bottom:4px;letter-spacing:1px;
 }
 .progress-val{color:var(--dim)}
 .progress-bar{height:2px;background:rgba(255,255,255,0.04);overflow:hidden}
@@ -373,11 +399,11 @@ body::after{
 /* ===== Stats Row ===== */
 .stats-row{display:flex;gap:1px}
 .stat-cell{
-  flex:1;text-align:center;padding:8px 4px;
+  flex:1;text-align:center;padding:6px 4px;
   border-top:1px solid var(--line);
 }
-.stat-cell .sv{font-size:18px;font-weight:700;color:var(--text)}
-.stat-cell .sl{font-size:9px;color:var(--faint);margin-top:1px;letter-spacing:1px}
+.stat-cell .sv{font-size:17px;font-weight:700;color:var(--text)}
+.stat-cell .sl{font-size:8px;color:var(--faint);margin-top:1px;letter-spacing:1px}
 
 /* ===== Setup Screen ===== */
 .setup-content{
@@ -422,6 +448,27 @@ body::after{
   box-shadow:0 0 15px rgba(255,184,0,0.08);
 }
 .start-core:active{transform:scale(.97);box-shadow:0 0 25px rgba(255,184,0,0.15)}
+
+/* ===== Mobile Compact (≤360px) ===== */
+@media(max-width:360px){
+  .topbar{padding:6px 12px;padding-top:max(6px,env(safe-area-inset-top))}
+  .home-content{padding:0 12px 12px;gap:10px}
+  .energy-core{width:84px;height:84px}
+  .energy-core .core-label{font-size:11px}
+  .energy-core .core-sub{font-size:7px}
+  .dual-core{gap:10px}
+  .planet-orb{width:40px;height:40px;margin-bottom:4px}
+  .planet-grid{gap:10px 8px}
+  .planet-name{font-size:11px}
+  .planet-mode{font-size:8px}
+  .planet-status{font-size:7px}
+  .planet-best{font-size:7px}
+  .status-text{font-size:11px}
+  .divider{font-size:9px}
+  .stat-cell .sv{font-size:15px}
+  .stat-cell .sl{font-size:7px}
+  .streak-indicator{font-size:11px}
+}
 
 /* ===== Game Screen ===== */
 .game-topbar{
@@ -587,6 +634,7 @@ body::after{
 .result-rating.A{color:rgba(255,184,0,0.7);text-shadow:0 0 20px rgba(255,184,0,0.2)}
 .result-rating.B{color:rgba(255,255,255,0.4)}
 .result-rating.C{color:rgba(255,255,255,0.2)}
+.result-rating.D{color:rgba(255,80,80,0.3)}
 .result-time{
   font-size:28px;font-weight:700;
   font-family:'SF Mono','Courier New',monospace;
@@ -605,6 +653,30 @@ body::after{
   line-height:1.5;
 }
 .result-info{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;font-size:11px;color:var(--faint);max-width:300px}
+.result-answers{
+  max-width:320px;width:100%;margin-top:12px;
+  display:flex;flex-direction:column;gap:10px;
+}
+.ra-base{
+  border:1px solid rgba(255,255,255,0.06);
+  background:rgba(255,255,255,0.015);border-radius:6px;
+  padding:8px 10px;text-align:left;
+}
+.ra-base-char{
+  font-size:18px;font-weight:800;color:var(--furnace);margin-bottom:6px;
+}
+.ra-pairs{display:flex;flex-wrap:wrap;gap:6px;}
+.ra-pair{
+  font-size:12px;padding:2px 6px;border-radius:3px;
+  border:1px solid rgba(255,255,255,0.06);
+  color:rgba(255,255,255,0.18);white-space:nowrap;
+}
+.ra-pair.ra-forged{
+  color:rgba(255,230,109,0.9);
+  border-color:rgba(255,107,53,0.2);
+  background:rgba(255,107,53,0.08);
+  text-shadow:0 0 4px rgba(255,107,53,0.3);
+}
 .result-buttons{display:flex;gap:10px;margin-top:8px;width:100%;max-width:280px}
 .btn-out{
   flex:1;padding:13px;border:1px solid var(--line);
@@ -839,81 +911,190 @@ body::after{
 .setup-rule .rp-name{font-weight:600;font-size:11px}
 .setup-rule .rp-note{font-size:9px;color:rgba(255,255,255,0.4);letter-spacing:.5px;margin-top:2px}
 
-/* ===== Pulse Game CSS (神经脉冲 / 裂变星) ===== */
-.pulse-area{position:absolute;inset:0;overflow:hidden;z-index:1}
-.pulse-layer{position:absolute;inset:0;z-index:10}
-.pulse-core{
-  position:absolute;top:50%;left:50%;width:64px;height:64px;border-radius:50%;
-  transform:translate(-50%,-50%);z-index:5;pointer-events:none;
-  background:radial-gradient(circle at 40% 35%,rgba(120,245,255,0.45),rgba(0,180,200,0.12) 60%,transparent);
-  border:1px solid rgba(0,240,255,0.4);
-  box-shadow:0 0 30px rgba(0,240,255,0.35),inset 0 0 18px rgba(0,240,255,0.18);
-  animation:pulse-core-breathe 3s ease-in-out infinite;
+/* ===== Furnace Game CSS (字脉熔炉 / 熔铸星) ===== */
+.furnace-area{
+  position:absolute;inset:0;overflow:hidden;z-index:1;
+  background:radial-gradient(circle at 50% 50%,#1A0F0A 0%,#0D0805 70%,#070302 100%);
 }
-@keyframes pulse-core-breathe{0%,100%{transform:translate(-50%,-50%) scale(1);filter:brightness(1)}50%{transform:translate(-50%,-50%) scale(1.08);filter:brightness(1.3)}}
-/* 四端口：坐标由 JS 设定(left/top 为端口中心)，transform 仅居中 */
-.pulse-port{
-  position:absolute;width:78px;height:78px;border-radius:50%;
-  transform:translate(-50%,-50%);z-index:4;pointer-events:none;
-  border:2px solid rgba(0,240,255,0.22);
-  background:rgba(6,16,20,0.55);
-  box-shadow:0 0 16px rgba(0,240,255,0.08),inset 0 0 12px rgba(0,240,255,0.05);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
-  transition:border-color .3s,box-shadow .3s,background .3s;
+.furnace-timer-bar{position:absolute;top:0;left:0;right:0;height:4px;z-index:7;background:rgba(255,255,255,0.06);pointer-events:none}
+.furnace-timer-fill{height:100%;background:linear-gradient(90deg,#FF6B35,#FFE66D);transition:width .25s linear;border-radius:0 2px 2px 0}
+.furnace-timer-bar.gf-low .furnace-timer-fill{background:linear-gradient(90deg,#FF4757,#FF6B81)}
+.furnace-timer-text{position:absolute;top:10px;left:50%;transform:translateX(-50%);z-index:7;
+  font-family:'SF Mono','Courier New',monospace;font-size:26px;font-weight:700;
+  color:rgba(255,107,53,0.9);letter-spacing:3px;pointer-events:none;
+  text-shadow:0 0 12px rgba(255,107,53,0.5);}
+.furnace-timer-text.gf-low{color:rgba(255,71,87,0.95);text-shadow:0 0 14px rgba(255,71,87,0.6);animation:gf-timer-warn .6s ease-in-out infinite}
+@keyframes gf-timer-warn{0%,100%{opacity:1}50%{opacity:.5}}
+.furnace-prompt{
+  position:absolute;top:58px;left:50%;transform:translateX(-50%);z-index:6;
+  font-size:12px;letter-spacing:3px;color:rgba(255,107,53,0.85);
+  text-shadow:0 0 10px rgba(255,107,53,0.5);pointer-events:none;white-space:nowrap;
 }
-.pulse-port .port-label{font-size:10px;letter-spacing:2px;color:rgba(0,240,255,0.55)}
-.pulse-port .port-cavity{
-  width:46px;height:46px;border-radius:50%;
-  background:radial-gradient(circle,rgba(255,255,255,0.04),transparent 72%);
-  border:1px solid var(--pc,rgba(255,255,255,0.18));
-  box-shadow:inset 0 0 10px var(--pc,rgba(255,255,255,0.12));
-  transition:box-shadow .35s,border-color .35s,background .35s;
+.furnace-progress{
+  position:absolute;top:80px;left:50%;transform:translateX(-50%);z-index:6;
+  font-size:16px;font-weight:700;letter-spacing:1px;
+  color:rgba(255,230,109,0.9);
+  text-shadow:0 0 12px rgba(255,230,109,0.5);pointer-events:none;white-space:nowrap;
+  transition:all .3s;
 }
-.pulse-port.lit .port-cavity{
-  background:radial-gradient(circle,var(--pc) 0%,transparent 72%);
-  border-color:var(--pc);
-  box-shadow:inset 0 0 18px var(--pc),0 0 16px var(--pc);
-  animation:cavity-pulse 1.6s ease-in-out infinite;
+.furnace-progress.fp-complete{
+  color:rgba(57,255,20,0.9);
+  text-shadow:0 0 16px rgba(57,255,20,0.7);
+  animation:fp-pulse .5s ease-out;
 }
-@keyframes cavity-pulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.5)}}
-.pulse-port.warning{border-color:rgba(255,255,255,0.7);box-shadow:0 0 30px rgba(255,255,255,0.4),inset 0 0 20px rgba(255,255,255,0.2);animation:port-warn .35s ease-in-out infinite}
-@keyframes port-warn{0%,100%{filter:brightness(1)}50%{filter:brightness(1.7)}}
-.pulse-port.flip-in{border-color:rgba(0,240,255,0.9);box-shadow:0 0 34px rgba(0,240,255,0.5),inset 0 0 22px rgba(0,240,255,0.3)}
-.pulse-port.absorb{animation:port-absorb .35s ease-out}
-@keyframes port-absorb{0%{transform:translate(-50%,-50%) scale(1)}40%{transform:translate(-50%,-50%) scale(1.18)}100%{transform:translate(-50%,-50%) scale(1)}}
-.pulse-port.overload{border-color:rgba(255,42,42,0.85)!important;background:rgba(40,6,6,0.6)!important;box-shadow:0 0 30px rgba(255,42,42,0.5),inset 0 0 20px rgba(255,42,42,0.25)!important}
-.pulse-flash{position:absolute;inset:0;z-index:30;pointer-events:none;opacity:0}
-.pulse-flash.active{animation:flash-sweep .5s ease-out}
-.pulse-rule{
-  position:absolute;top:56px;left:12px;z-index:8;pointer-events:none;
-  padding:8px 11px;border:1px solid rgba(0,240,255,0.18);
-  background:rgba(8,20,24,0.4);
-  font-size:11px;letter-spacing:.5px;color:var(--dim);
-  display:flex;flex-direction:column;gap:6px;
+@keyframes fp-pulse{
+  0%{transform:translateX(-50%) scale(1)}
+  50%{transform:translateX(-50%) scale(1.3)}
+  100%{transform:translateX(-50%) scale(1)}
 }
-.pulse-rule .pr-title{font-size:9px;letter-spacing:2px;color:rgba(0,240,255,0.7);border-bottom:1px solid rgba(0,240,255,0.12);padding-bottom:4px}
-.pulse-rule .pr-rows{display:flex;flex-direction:column;gap:4px}
-.pulse-rule .pr-row{display:flex;align-items:center;gap:5px;white-space:nowrap}
-.pulse-rule .pr-dot{width:10px;height:10px;border-radius:50%;box-shadow:0 0 6px currentColor}
-.pulse-rule .pr-arrow{color:rgba(255,255,255,0.3);margin:0 3px}
-.pulse-rule .pr-side{font-weight:700;color:rgba(0,240,255,0.85)}
-/* 离子尾迹 */
-.pulse-trail-svg{position:absolute;inset:0;z-index:9;pointer-events:none;width:100%;height:100%}
-.pulse-trail-svg line{stroke-linecap:round}
-/* 脉冲本体（复用 spore） */
-.pulse-layer .spore{width:40px;height:40px}
-.pulse-layer .spore.dragging{transform:translate(-50%,-50%) scale(1.12)}
-.pulse-layer .spore.dragging .spore-shape{transform:scaleX(1.22) scaleY(0.86)}
-.pulse-layer .spore.distractor{width:55px;height:55px}
-.pulse-layer .spore.distractor .spore-shape{
+/* Central hexagonal base */
+.furnace-base{
+  position:absolute;left:50%;top:50%;
+  transform:translate(-50%,-50%);
+  width:100px;height:100px;
+  z-index:5;pointer-events:none;
+  display:flex;align-items:center;justify-content:center;
+  clip-path:polygon(50% 0%,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%);
+  background:radial-gradient(circle at 50% 50%,rgba(255,107,53,0.5),rgba(255,107,53,0.15) 60%,rgba(120,50,20,0.1));
+  border:2px solid rgba(255,107,53,0.5);
+  box-shadow:0 0 30px rgba(255,107,53,0.3),inset 0 0 20px rgba(255,107,53,0.15);
+  animation:fb-breathe 3s ease-in-out infinite;
+  transition:box-shadow .3s,border-color .3s;
+}
+@keyframes fb-breathe{
+  0%,100%{box-shadow:0 0 25px rgba(255,107,53,0.25),inset 0 0 15px rgba(255,107,53,0.12)}
+  50%{box-shadow:0 0 40px rgba(255,107,53,0.45),inset 0 0 25px rgba(255,107,53,0.2)}
+}
+.furnace-base.fb-active{
+  border-color:rgba(255,230,109,0.8);
+  box-shadow:0 0 50px rgba(255,230,109,0.5),inset 0 0 30px rgba(255,230,109,0.25);
+}
+.furnace-base.fb-forge{animation:fb-forge-anim .6s ease-out}
+@keyframes fb-forge-anim{
+  0%{transform:translate(-50%,-50%) scale(1)}
+  30%{transform:translate(-50%,-50%) scale(1.2);box-shadow:0 0 60px rgba(255,230,109,0.8)}
+  100%{transform:translate(-50%,-50%) scale(1)}
+}
+.furnace-base.fb-reject{
+  border-color:rgba(255,60,60,0.8)!important;
+  box-shadow:0 0 40px rgba(255,60,60,0.5),inset 0 0 25px rgba(255,60,60,0.2)!important;
+  animation:fb-reject-shake .4s ease-out;
+}
+@keyframes fb-reject-shake{
+  0%,100%{transform:translate(-50%,-50%) translateX(0)}
+  25%{transform:translate(-50%,-50%) translateX(-6px)}
+  75%{transform:translate(-50%,-50%) translateX(6px)}
+}
+.furnace-base.fb-switch{animation:fb-switch-anim .6s ease-out}
+@keyframes fb-switch-anim{
+  0%{transform:translate(-50%,-50%) scale(1) rotate(0)}
+  50%{transform:translate(-50%,-50%) scale(0.7) rotate(180deg)}
+  100%{transform:translate(-50%,-50%) scale(1) rotate(360deg)}
+}
+.fb-char{
+  font-size:32px;font-weight:900;
+  color:rgba(255,230,109,0.95);
+  text-shadow:0 0 15px rgba(255,107,53,0.8),0 0 30px rgba(255,107,53,0.4);
+}
+.fb-result-flash{
+  position:absolute;left:50%;top:50%;
+  transform:translate(-50%,-50%);
+  font-size:40px;font-weight:900;
+  color:rgba(255,255,255,0.95);
+  text-shadow:0 0 20px rgba(255,230,109,0.9),0 0 40px rgba(255,107,53,0.5);
+  animation:fb-result-pop .6s ease-out forwards;
+  pointer-events:none;
+}
+@keyframes fb-result-pop{
+  0%{transform:translate(-50%,-50%) scale(0.3);opacity:0}
+  30%{transform:translate(-50%,-50%) scale(1.3);opacity:1}
+  60%{transform:translate(-50%,-50%) scale(1);opacity:1}
+  100%{transform:translate(-50%,-50%) scale(0.8) translateY(-30px);opacity:0}
+}
+/* Radical bubbles */
+.fb-bubble{
+  position:absolute;width:52px;height:52px;
+  transform:translate(-50%,-50%);
+  display:flex;align-items:center;justify-content:center;
   border-radius:50%;
-  background:radial-gradient(circle at 40% 35%,#fff,#bf00ff 55%,#00f0ff 100%)!important;
-  border:1.5px solid rgba(255,255,255,0.6);
-  box-shadow:0 0 22px rgba(191,0,255,0.6),0 0 42px rgba(0,240,255,0.4)!important;
-  animation:distractor-shimmer .5s linear infinite;
+  border:2.5px solid rgba(255,230,109,0.45);
+  background:radial-gradient(circle at 35% 30%,rgba(255,107,53,0.25),rgba(255,107,53,0.08));
+  box-shadow:0 0 10px rgba(255,107,53,0.2),inset 0 0 8px rgba(255,107,53,0.08);
+  z-index:10;touch-action:none;cursor:grab;
+  transition:opacity .3s;
 }
-@keyframes distractor-shimmer{0%,100%{filter:brightness(1)}50%{filter:brightness(1.6)}}
-.pulse-layer .spore.magnet .spore-shape{box-shadow:0 0 30px rgba(255,255,255,0.7),0 0 50px rgba(191,0,255,0.5)!important}
+.fb-bubble:active{cursor:grabbing}
+.fb-bubble .fb-rad{
+  font-size:20px;font-weight:700;
+  color:rgba(255,255,255,0.9);
+  text-shadow:0 0 6px rgba(255,107,53,0.5);
+}
+.fb-bubble.fb-dragging{z-index:20;transform:translate(-50%,-50%) scale(1.15)}
+.fb-bubble.fb-forged{animation:fb-forged-anim .5s ease-out forwards;pointer-events:none}
+@keyframes fb-forged-anim{
+  0%{transform:translate(-50%,-50%) scale(1);opacity:1}
+  50%{transform:translate(-50%,-50%) scale(0.4);opacity:.7}
+  100%{transform:translate(-50%,-50%) scale(0);opacity:0}
+}
+.fb-bubble.fb-rejected{animation:fb-rejected-anim .4s ease-out forwards;pointer-events:none}
+@keyframes fb-rejected-anim{
+  0%{transform:translate(-50%,-50%) scale(1);opacity:1}
+  30%{transform:translate(-50%,-50%) scale(1.3);filter:hue-rotate(180deg)}
+  100%{transform:translate(-50%,-50%) scale(0);opacity:0}
+}
+.fb-bubble.fb-missed{animation:fb-missed-anim .4s ease-out forwards;pointer-events:none}
+@keyframes fb-missed-anim{0%{opacity:.6}100%{opacity:0;transform:translate(-50%,-50%) scale(.5)}}
+.fb-particle{position:absolute;width:5px;height:5px;border-radius:50%;pointer-events:none;z-index:15;transform:translate(-50%,-50%)}
+.fb-penalty-flash{
+  position:absolute;transform:translate(-50%,-50%);
+  font-size:22px;font-weight:900;
+  color:rgba(255,60,40,1);
+  text-shadow:0 0 12px rgba(255,60,40,0.7),0 0 24px rgba(255,60,40,0.3);
+  animation:fb-penalty-pop .9s ease-out forwards;
+  pointer-events:none;z-index:25;
+}
+@keyframes fb-penalty-pop{
+  0%{opacity:1;transform:translate(-50%,-50%) scale(0.5)}
+  20%{opacity:1;transform:translate(-50%,-50%) scale(1.4)}
+  50%{opacity:1;transform:translate(-50%,-60%) scale(1.2)}
+  100%{opacity:0;transform:translate(-50%,-130px) scale(0.6)}
+}
+#furnace-trail-svg{position:absolute;inset:0;width:100%;height:100%;z-index:9;pointer-events:none}
+/* Character spectrum */
+.fs-item{
+  position:absolute;transform:translate(-50%,-50%);
+  font-size:10px;font-weight:700;
+  color:rgba(255,255,255,0.06);
+  transition:color .3s,font-size .2s,text-shadow .3s;
+  z-index:3;pointer-events:none;
+}
+.fs-item.fs-lit{
+  color:rgba(255,230,109,0.95);
+  font-size:16px;
+  text-shadow:0 0 10px rgba(255,107,53,0.6),0 0 20px rgba(255,107,53,0.3);
+  animation:fs-lit-pop .4s ease-out;
+}
+.fs-item.fs-reveal{
+  color:rgba(255,230,109,0.95);
+  font-size:16px;
+  text-shadow:0 0 15px rgba(255,107,53,0.8),0 0 30px rgba(255,107,53,0.4);
+  border:2.5px solid rgba(255,230,109,0.45);
+  border-radius:6px;
+  padding:4px 8px;
+  background:radial-gradient(circle at 35% 30%,rgba(255,107,53,0.25),rgba(255,107,53,0.08));
+  box-shadow:0 0 10px rgba(255,107,53,0.2),inset 0 0 8px rgba(255,107,53,0.08);
+  animation:fs-reveal-pop .5s ease-out;
+}
+@keyframes fs-reveal-pop{
+  0%{transform:translate(-50%,-50%) scale(0.3);opacity:0}
+  60%{transform:translate(-50%,-50%) scale(1.2);opacity:1}
+  100%{transform:translate(-50%,-50%) scale(1);opacity:1}
+}
+@keyframes fs-lit-pop{
+  0%{transform:translate(-50%,-50%) scale(1)}
+  50%{transform:translate(-50%,-50%) scale(1.3)}
+  100%{transform:translate(-50%,-50%) scale(1)}
+}
 
 /* ===== Corridor Game CSS (记忆回廊 / 回响星) ===== */
 .corridor-area{
@@ -1058,12 +1239,6 @@ body::after{
         <circle cx="12" cy="12" r="2.5"/>
       </svg>
     </div>
-    <div class="icon-btn" id="btn-refresh" title="刷新页面">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <path d="M1 4v6h6"/><path d="M23 20v-6h-6"/>
-        <path d="M20.49 9A9 9 0 005.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 013.51 15"/>
-      </svg>
-    </div>
   </div>
   <div class="home-content">
     <div class="status-text" id="status-text">突触回路待激活</div>
@@ -1112,7 +1287,6 @@ body::after{
       <div class="rp-row"><span class="rp-shape spore-red"><div class="spore-shape"></div></span><span class="rp-name" style="color:rgba(255,68,68,0.9)">赤红</span><span class="rp-arrow">↔</span><span class="rp-shape spore-green"><div class="spore-shape"></div></span><span class="rp-name" style="color:rgba(57,255,20,0.9)">翠绿</span></div>
       <div class="rp-row"><span class="rp-shape spore-blue"><div class="spore-shape"></div></span><span class="rp-name" style="color:rgba(68,136,255,0.9)">湛蓝</span><span class="rp-arrow">↔</span><span class="rp-shape spore-gold"><div class="spore-shape"></div></span><span class="rp-name" style="color:rgba(255,215,0,0.9)">金黄</span></div>
       <div class="rp-note">膜囊显何色，即拖入其互补色</div>
-      <div class="rp-note" style="margin-top:4px;color:rgba(255,255,255,0.5)">其余颜色 · 左滑划走</div>
     </div>
     <div class="diff-selector" id="diff-selector"></div>
     <div class="diff-best" id="diff-best">选择强度查看峰值</div>
@@ -1140,26 +1314,21 @@ body::after{
       <div class="rp-row"><span class="rp-shape spore-red"><div class="spore-shape"></div></span><span class="rp-name" style="color:rgba(255,68,68,0.9)">赤红</span><span class="rp-arrow">↔</span><span class="rp-shape spore-green"><div class="spore-shape"></div></span><span class="rp-name" style="color:rgba(57,255,20,0.9)">翠绿</span></div>
       <div class="rp-row"><span class="rp-shape spore-blue"><div class="spore-shape"></div></span><span class="rp-name" style="color:rgba(68,136,255,0.9)">湛蓝</span><span class="rp-arrow">↔</span><span class="rp-shape spore-gold"><div class="spore-shape"></div></span><span class="rp-name" style="color:rgba(255,215,0,0.9)">金黄</span></div>
       <div class="rp-note">膜囊显何色，即拖入其互补色</div>
-      <div class="rp-note" style="margin-top:4px;color:rgba(255,255,255,0.5)">其余颜色 · 左滑划走</div>
     </div>
     <div class="membrane" id="membrane"></div>
     <div class="membrane-hint" id="membrane-hint">膜囊显色 <span class="target-color" id="membrane-color">赤红</span></div>
     <div class="spore-layer" id="spore-layer"></div>
     <div class="focus-flash" id="focus-flash"></div>
   </div>
-  <div class="pulse-area" id="pulse-area" style="display:none">
-    <div class="pulse-rule" id="pulse-rule">
-      <div class="pr-title">端口映射 · 当前</div>
-      <div class="pr-rows" id="pulse-rule-rows"></div>
-    </div>
-    <div class="pulse-port" id="port-top" data-side="top"><span class="port-label">上</span><div class="port-cavity"></div></div>
-    <div class="pulse-port" id="port-right" data-side="right"><span class="port-label">右</span><div class="port-cavity"></div></div>
-    <div class="pulse-port" id="port-bottom" data-side="bottom"><span class="port-label">下</span><div class="port-cavity"></div></div>
-    <div class="pulse-port" id="port-left" data-side="left"><span class="port-label">左</span><div class="port-cavity"></div></div>
-    <div class="pulse-core" id="pulse-core"></div>
-    <svg class="pulse-trail-svg" id="pulse-trail-svg"></svg>
-    <div class="pulse-layer" id="pulse-layer"></div>
-    <div class="pulse-flash" id="pulse-flash"></div>
+  <div class="furnace-area" id="furnace-area" style="display:none">
+    <div class="furnace-timer-bar" id="furnace-timer-bar"><div class="furnace-timer-fill" id="furnace-timer-fill"></div></div>
+    <div class="furnace-timer-text" id="furnace-timer-text">90s</div>
+    <div class="furnace-prompt" id="furnace-prompt">拖拽偏旁至熔炉</div>
+    <div class="furnace-progress" id="furnace-progress">已熔铸 0/0 字</div>
+    <svg id="furnace-trail-svg" xmlns="http://www.w3.org/2000/svg"></svg>
+    <div class="furnace-base" id="furnace-base"><span class="fb-char">青</span></div>
+    <div id="furnace-spectrum"></div>
+    <div id="furnace-layer"></div>
   </div>
   <div class="corridor-area" id="corridor-area" style="display:none">
     <div class="corridor-timer-bar" id="corridor-timer-bar"><div class="corridor-timer-fill" id="corridor-timer-fill"></div></div>
@@ -1178,10 +1347,11 @@ body::after{
     <div id="new-peak" style="display:none"><span class="new-peak">新峰值</span></div>
     <div class="result-time" id="result-time">0.0<span class="unit">s</span></div>
     <div class="result-info" id="result-info"></div>
+    <div class="result-answers" id="result-answers" style="display:none"></div>
     <div class="result-quantum" id="result-quantum">+0 量子</div>
     <div class="result-checkin" id="result-checkin" style="display:none"></div>
     <div class="result-buttons">
-      <button class="btn-out" id="btn-retry">重置脉冲</button>
+      <button class="btn-out" id="btn-retry">重铸字符</button>
       <button class="btn-in" id="btn-home">回归星域</button>
     </div>
   </div>
@@ -1226,15 +1396,15 @@ body::after{
 /* ===== Data ===== */
 const STORE_KEY='mindGalaxy_v2';
 const PLANETS=[
-  {id:'orbit',name:'秩序星',mode:'星轨寻数',mat:'stellar',color:'#FFB800',status:'active',
+  {id:'orbit',name:'秩序星',mode:'星轨寻数',mat:'stellar',color:'#4488FF',status:'active',
    desc:'圆盘上随机分布数字1-N，按顺序依次点击。眼睛固定中心，用余光感知数字位置。',
    target:'视觉搜索 · 选择性注意'},
   {id:'focus',name:'宁静星',mode:'杂念捕手',mat:'bio',color:'#39FF14',status:'active',
-   desc:'四色孢子飘浮。拖互补色入膜囊，其余左滑划走。色轮切换考验惯性抑制。',
+   desc:'四色孢子飘浮，拖互补色入膜囊，划走其余三种。色轮切换考验惯性抑制。',
    target:'抑制控制 · 冲动抑制'},
-  {id:'pulse',name:'裂变星',mode:'神经脉冲',mat:'plasma',color:'#00F0FF',status:'locked',
-   desc:'脉冲从中心生成，滑动引导到正确端口。规则会动态翻转。',
-   target:'认知灵活性 · 反应抑制'},
+  {id:'furnace',name:'熔铸星',mode:'字脉熔炉',mat:'furnace',color:'#FF6B35',status:'active',
+   desc:'偏旁从四周漂向中央熔炉，拖拽有效偏旁至基座熔铸成新字。无效偏旁会触发排斥。',
+   target:'语言流畅性 · 构字意识'},
   {id:'corridor',name:'回响星',mode:'记忆回廊',mat:'crystal',color:'#B026FF',status:'active',
    desc:'闪现一条发光路径，消失后按正确顺序点击节点复现。',
    target:'空间工作记忆'},
@@ -1245,19 +1415,19 @@ const PLANETS=[
 const DIFFS={
   orbit:[
     {key:'3x3',label:'新手',N:9,  size:0.35,fontSize:24,float:false,errPenalty:0.3,r:{S:8, A:12,B:18}},
-    {key:'4x4',label:'标准',N:16, size:0.40,fontSize:22,float:false,errPenalty:0.5,r:{S:15,A:21,B:30}},
-    {key:'5x5',label:'进阶',N:25, size:0.42,fontSize:20,float:true, errPenalty:0.5,r:{S:23,A:32,B:46}},
-    {key:'6x6',label:'大师',N:36, size:0.45,fontSize:18,float:true, errPenalty:0.5,r:{S:34,A:48,B:68}},
+    {key:'4x4',label:'标准',N:16, size:0.40,fontSize:22,float:false,errPenalty:0.5,r:{S:15,A:22,B:35}},
+    {key:'5x5',label:'进阶',N:25, size:0.42,fontSize:20,float:true, errPenalty:0.5,r:{S:20,A:30,B:45}},
+    {key:'6x6',label:'大师',N:36, size:0.45,fontSize:18,float:true, errPenalty:0.5,r:{S:35,A:50,B:70}},
   ],
   focus:[
     {key:'dew',label:'新手',duration:75,spawnInterval:2.0,speed:55,maxSpores:6,r:{S:0.90,A:0.80,B:0.70,C:0.60}},
     {key:'breeze',label:'标准',duration:75,spawnInterval:1.5,speed:80,maxSpores:8,r:{S:0.90,A:0.80,B:0.70,C:0.60}},
     {key:'storm',label:'大师',duration:75,spawnInterval:1.0,speed:110,maxSpores:10,r:{S:0.90,A:0.80,B:0.70,C:0.60}},
   ],
-  pulse:[
-    {key:'dew',label:'新手',duration:60,spawnInterval:2.5,maxPulses:4,flipInterval:25,grace:5.0,pulseLife:5.0,distractor:0.10,speed:15,r:{S:0.90,A:0.80,B:0.70,C:0.60}},
-    {key:'breeze',label:'标准',duration:90,spawnInterval:2.0,maxPulses:6,flipInterval:20,grace:3.0,pulseLife:4.5,distractor:0.15,speed:25,r:{S:0.90,A:0.80,B:0.70,C:0.60}},
-    {key:'storm',label:'大师',duration:90,spawnInterval:1.5,maxPulses:8,flipInterval:15,grace:2.0,pulseLife:3.5,distractor:0.25,speed:40,r:{S:0.90,A:0.80,B:0.70,C:0.60}},
+  furnace:[
+    {key:'dew',label:'新手',duration:60,spawnInterval:2.5,speed:30,distractor:0.25,baseSwitch:0,basePool:['青','包','古','也','寸','可','少','主','辰','林'],numBases:2,dupPenalty:1.0,invPenalty:1.5,r:{S:0.80,A:0.60,B:0.40}},
+    {key:'breeze',label:'标准',duration:90,spawnInterval:2.0,speed:45,distractor:0.45,baseSwitch:50,bases:['古','也','兆','寸','可','少','交'],dupPenalty:1.5,invPenalty:2.0,r:{S:0.80,A:0.60,B:0.40}},
+    {key:'storm',label:'大师',duration:90,spawnInterval:1.5,speed:60,distractor:0.60,baseSwitch:45,bases:['主','辰','林','青','交'],dupPenalty:1.5,invPenalty:2.5,r:{S:0.80,A:0.60,B:0.40}},
   ],
   corridor:[
     {key:'dew',label:'新手',poolSize:9, maxLen:6,growStep:0.42,hold:1.4,timeLimit:120,r:{S:6,A:5,B:4}},
@@ -1265,8 +1435,8 @@ const DIFFS={
     {key:'storm',label:'大师',poolSize:13,maxLen:9,growStep:0.26,hold:0.8,timeLimit:120,r:{S:8,A:7,B:6}},
   ],
 };
-const STARS={S:50,A:40,B:30,C:20};
-const MAT_CLASS={stellar:'orb-stellar',bio:'orb-bio',plasma:'orb-plasma',crystal:'orb-crystal',holo:'orb-holo'};
+const STARS={S:50,A:40,B:30,C:20,D:10};
+const MAT_CLASS={stellar:'orb-stellar',bio:'orb-bio',furnace:'orb-furnace',crystal:'orb-crystal',holo:'orb-holo'};
 
 /* ===== Platform Adapter Layer =====
    为微信小程序原生改写预留的适配壳。当前为 Web(DOM) 实现；
@@ -1329,12 +1499,15 @@ function loadData(){
   return{streak:0,lastCheckInDate:null,todayCompleted:false,todayCompletedDate:null,
     todayFreeSeconds:0,todayFreeDate:null,bestStreak:0,totalStars:0,totalSessions:0,
     settings:{sound:true,vibration:true,fixation:true},
-    modeBests:{orbit:{'3x3':null,'4x4':null,'5x5':null,'6x6':null},focus:{dew:null,breeze:null,storm:null},pulse:{dew:null,breeze:null,storm:null},corridor:{dew:null,breeze:null,storm:null}},
+    modeBests:{orbit:{'3x3':null,'4x4':null,'5x5':null,'6x6':null},focus:{dew:null,breeze:null,storm:null},furnace:{dew:null,breeze:null,storm:null},corridor:{dew:null,breeze:null,storm:null}},
     sessions:[]};
 }
 function saveData(){Store.set(STORE_KEY,D)}
 let D=loadData();
+if(D.modeBests&&!D.modeBests.furnace)D.modeBests.furnace={dew:null,breeze:null,storm:null};
 if(D.modeBests&&!D.modeBests.corridor)D.modeBests.corridor={dew:null,breeze:null,storm:null};
+// migrate: old pulse data is incompatible with furnace game, clear it
+if(D.modeBests&&D.modeBests.pulse){delete D.modeBests.pulse;}
 // migrate old corridor bests (plain number → {ml,rt})
 if(D.modeBests&&D.modeBests.corridor){
   ['dew','breeze','storm'].forEach(function(k){
@@ -1551,8 +1724,8 @@ function renderHome(){
         for(const k of ['3x3','4x4','5x5','6x6']){if(b[k]){s=DIFFS.orbit.find(d=>d.key===k).label+':'+b[k]+'s';break}}
       }else if(p.id==='focus'){
         for(const k of ['dew','breeze','storm']){if(b[k]){s=DIFFS.focus.find(d=>d.key===k).label+':'+(b[k]*100).toFixed(0)+'%';break}}
-      }else if(p.id==='pulse'){
-        for(const k of ['dew','breeze','storm']){if(b[k]){s=DIFFS.pulse.find(d=>d.key===k).label+':'+(b[k]*100).toFixed(0)+'%';break}}
+      }else if(p.id==='furnace'){
+        for(const k of ['dew','breeze','storm']){if(b[k]){var v=b[k];s=DIFFS.furnace.find(d=>d.key===k).label+':'+(typeof v==='object'?v.rt:v);break}}
       }else if(p.id==='corridor'){
         for(const k of ['dew','breeze','storm']){if(b[k]){var v=b[k];s=DIFFS.corridor.find(d=>d.key===k).label+':'+(typeof v==='object'?v.rt:v);break}}
       }
@@ -1626,8 +1799,10 @@ function updateDiffBest(){
   const b=D.modeBests[curMode]?D.modeBests[curMode][curDiff]:null;
   const el=document.getElementById('diff-best');
   if(!b){el.innerHTML='无记录 · 待首次校准';return;}
-  if(curMode==='focus'||curMode==='pulse'){
+  if(curMode==='focus'){
     el.innerHTML='最快记录: <span class="bt">'+(b*100).toFixed(0)+'%</span>';
+  }else if(curMode==='furnace'){
+    el.innerHTML='最佳评级: <span class="bt '+b.rt+'">'+b.rt+'</span><span style="color:var(--faint)"> ('+b.ac+'字)</span>';
   }else if(curMode==='corridor'){
     el.innerHTML='最佳评级: <span class="bt '+b.rt+'">'+b.rt+'</span><span style="color:var(--faint)"> (路径 '+b.ml+')</span>';
   }else{
@@ -1724,7 +1899,7 @@ function generatePositions(count,fieldSize,cellSize){
 function startGame(modeId,diffKey,tour){
   curMode=modeId;curDiff=diffKey;isTour=!!tour;
   if(curMode==='focus'){startFocusGame(modeId,diffKey,tour);return;}
-  if(curMode==='pulse'){startPulseGame(modeId,diffKey,tour);return;}
+  if(curMode==='furnace'){startFurnaceGame(modeId,diffKey,tour);return;}
   if(curMode==='corridor'){startCorridorGame(modeId,diffKey,tour);return;}
   const diff=DIFFS.orbit.find(d=>d.key===diffKey);
   G.N=diff.N;G.total=diff.N;G.next=1;G.errors=0;G.errPenalty=diff.errPenalty;G.float=diff.float;
@@ -2318,6 +2493,7 @@ function showFocusResult(){
   document.getElementById('game-stats').style.display='none';
   document.getElementById('game-area').style.display='';
   document.getElementById('game-next-wrap').style.display='';
+  document.getElementById('result-answers').style.display='none';
   showScreen('screen-result');
 }
 
@@ -2358,340 +2534,465 @@ function cleanupFocus(){
   document.getElementById('game-next-wrap').style.display='';
 }
 
-/* ===== Pulse Game — 神经脉冲 / 裂变星 (四端口映射 · 规则翻转 · 干扰抑制) ===== */
-var dragPulse=null;
-var PG={active:false,startTime:0,duration:90,spawnInterval:2.0,maxPulses:6,flipInterval:20,grace:3.0,pulseLife:4.5,distractor:0.15,speed:25,
-  pulses:[],spawnedCount:0,processed:0,errors:0,missed:0,overload:0,swiped:0,combo:0,maxCombo:0,
-  spawnTimer:null,rafId:null,map:null,oldMap:null,ports:null,nextFlip:0,warnActive:false,graceEnd:0,lastSubmit:0};
-var PULSE_SIDES=['top','right','bottom','left'];
-var PULSE_SIDE_NAME={top:'上',right:'右',bottom:'下',left:'左'};
-var pgPointer=null;
-function pgAreaMove(e){
-  var lr=document.getElementById('pulse-layer').getBoundingClientRect();
-  pgPointer={x:e.clientX-lr.left,y:e.clientY-lr.top};
-}
+/* ===== Furnace Game — 字脉熔炉 / 熔铸星 (偏旁熔铸 · 构字意识 · 抑制控制) ===== */
+var GLYPH_DICT={
+  "青":{"氵":"清","讠":"请","忄":"情","日":"晴","目":"睛","虫":"蜻","米":"精","争":"静"},
+  "包":{"氵":"泡","火":"炮","饣":"饱","足":"跑","扌":"抱","艹":"苞","月":"胞"},
+  "古":{"氵":"沽","女":"姑","口":"咕","木":"枯","月":"胡","车":"轱"},
+  "也":{"氵":"池","女":"她","土":"地","马":"驰","口":"吔"},
+  "兆":{"氵":"洮","扌":"挑","足":"跳","木":"桃","目":"眺","女":"姚"},
+  "寸":{"木":"村","讠":"讨","衤":"衬","日":"时","月":"肘"},
+  "可":{"氵":"河","口":"呵","木":"柯","石":"砢"},
+  "少":{"氵":"沙","女":"妙","扌":"抄","口":"吵","目":"眇","禾":"秒"},
+  "交":{"氵":"浇","木":"校","扌":"绞","口":"咬","足":"跤","女":"姣"},
+  "主":{"氵":"注","女":"姝","木":"柱","火":"炷"},
+  "辰":{"日":"晨","女":"娠","口":"唇"},
+  "林":{"氵":"淋","女":"琳","火":"焚","雨":"霖"},
+};
+var ALL_RADICALS=["氵","讠","忄","扌","艹","木","火","日","月","口","足","虫","米","石","女","土","马","车","衤","纟","雨","目","禾","争","饣","犭","钅","亻","王","贝","阝","力","刂","山","宀","广","疒","冫","页","工","寸","大","子","文","立","心","礻"];
+var GF={active:false,diff:null,area:null,areaW:0,areaH:0,
+  cx:0,cy:0,baseChar:'',baseIdx:0,bases:[],activated:{},
+  totalPossible:0,totalActivated:0,totalPossibleAll:0,
+  errors:0,missed:0,combo:0,maxCombo:0,
+  startTime:0,duration:90,spawnInterval:2.0,speed:45,
+  distractor:0.25,baseSwitch:0,nextSwitch:0,
+  dupPenalty:2000,invPenalty:3000,
+  bubbles:[],spawnTimer:null,rafId:null,
+  baseEl:null,spectrumEls:[],dragBubble:null,baseSwitchCount:0};
+var dragBubbleInfo=null;
 
-function positionPorts(){
-  var layer=document.getElementById('pulse-layer');
-  var lr=layer.getBoundingClientRect();
-  if(!lr.width||!lr.height)return;
-  var R=Math.min(lr.width,lr.height)*0.35;
-  var cx=lr.width/2, cy=lr.height/2;
-  PG.ports={};
-  PULSE_SIDES.forEach(function(side){
-    var dx=0,dy=0;
-    if(side==='top')dy=-R;else if(side==='bottom')dy=R;else if(side==='right')dx=R;else dx=-R;
-    var x=cx+dx,y=cy+dy;
-    PG.ports[side]={x:x,y:y};
-    var el=document.getElementById('port-'+side);
-    el.style.left=x+'px';el.style.top=y+'px';
-  });
-}
-function generateMapping(){
-  var colors=SPORE_COLORS.slice();
-  for(var i=colors.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=colors[i];colors[i]=colors[j];colors[j]=t;}
-  var m={};PULSE_SIDES.forEach(function(s,idx){m[s]=colors[idx];});
-  return m;
-}
-function reshuffleMapping(cur){
-  var m,guard=0;
-  do{m=generateMapping();guard++;}while(
-    (m.top===cur.top||m.right===cur.right||m.bottom===cur.bottom||m.left===cur.left)&&guard<60
-  );
-  return m;
-}
-function updatePulseRule(){
-  var rows=document.getElementById('pulse-rule-rows');
-  rows.innerHTML='';
-  PULSE_SIDES.forEach(function(side){
-    var color=PG.map[side],info=COLOR_INFO[color];
-    var row=document.createElement('div');row.className='pr-row';
-    var dot=document.createElement('span');dot.className='pr-dot';
-    dot.style.color='rgba('+info.rgb+',0.95)';dot.style.background='rgba('+info.rgb+',0.95)';
-    var nm=document.createElement('span');nm.textContent=info.name;nm.style.color='rgba('+info.rgb+',0.95)';
-    var arr=document.createElement('span');arr.className='pr-arrow';arr.textContent='→';
-    var sd=document.createElement('span');sd.className='pr-side';sd.textContent=PULSE_SIDE_NAME[side];
-    row.appendChild(dot);row.appendChild(nm);row.appendChild(arr);row.appendChild(sd);
-    rows.appendChild(row);
-    var el=document.getElementById('port-'+side);
-    el.style.setProperty('--pc','rgba('+info.rgb+',0.9)');
-    el.classList.add('lit');
-  });
-}
-
-function startPulseGame(modeId,diffKey,tour){
+function startFurnaceGame(modeId,diffKey,tour){
   curMode=modeId;curDiff=diffKey;isTour=!!tour;
-  var diff=DIFFS.pulse.find(function(d){return d.key===diffKey});
-  PG.active=false;PG.duration=diff.duration;PG.spawnInterval=diff.spawnInterval;
-  PG.maxPulses=diff.maxPulses;PG.flipInterval=diff.flipInterval;PG.grace=diff.grace;PG.pulseLife=diff.pulseLife;
-  PG.distractor=diff.distractor;PG.speed=diff.speed;
-  PG.pulses=[];PG.spawnedCount=0;PG.processed=0;PG.errors=0;PG.missed=0;PG.overload=0;PG.swiped=0;
-  PG.combo=0;PG.maxCombo=0;PG.spawnTimer=null;PG.rafId=null;
-  PG.nextFlip=diff.flipInterval;PG.warnActive=false;PG.graceEnd=0;PG.lastSubmit=0;PG.ports=null;PG.oldMap=null;
-  if(dragPulse){var dp=dragPulse.pulse;if(dp&&dp.el){dp.el.classList.remove('dragging');}dragPulse=null;}
-  pgPointer=null;
-
+  var diff=DIFFS.furnace.find(function(d){return d.key===diffKey});
+  GF.active=false;GF.diff=diff;
+  GF.duration=diff.duration;GF.spawnInterval=diff.spawnInterval;
+  GF.speed=diff.speed;GF.distractor=diff.distractor;
+  GF.baseSwitch=diff.baseSwitch||0;
+  GF.dupPenalty=(diff.dupPenalty!=null?diff.dupPenalty:2.0)*1000;
+  GF.invPenalty=(diff.invPenalty!=null?diff.invPenalty:3.0)*1000;
+  if(diff.basePool&&diff.numBases){
+    var pool=diff.basePool.slice();
+    for(var p=pool.length-1;p>0;p--){var q=Math.floor(Math.random()*(p+1));var t=pool[p];pool[p]=pool[q];pool[q]=t;}
+    GF.bases=pool.slice(0,diff.numBases);
+  }else{
+    GF.bases=diff.bases.slice();
+  }
+  GF.baseIdx=0;GF.baseChar=GF.bases[0];
+  GF.activated={};GF.totalActivated=0;GF.totalPossibleAll=0;
+  GF.errors=0;GF.missed=0;GF.combo=0;GF.maxCombo=0;
+  GF.bubbles=[];GF.spawnTimer=null;GF.rafId=null;
+  GF.dragBubble=null;GF.baseSwitchCount=0;GF.baseCharHistory=[];
+  GF.completedBases={};GF.allBasesCleared=false;
+  GF.nextSwitch=GF.baseSwitch>0?GF.baseSwitch:999999;
+  var area=document.getElementById('furnace-area');
+  area.style.display='block';GF.area=area;
+  GF.areaW=area.clientWidth;GF.areaH=area.clientHeight;
+  GF.cx=GF.areaW/2;GF.cy=GF.areaH/2;
+  GF.baseEl=document.getElementById('furnace-base');
+  GF.baseEl.querySelector('.fb-char').textContent=GF.baseChar;
+  GF.baseEl.classList.remove('fb-active','fb-forge','fb-reject','fb-switch');
+  buildSpectrum();
+  var tf=document.getElementById('furnace-timer-fill');if(tf)tf.style.width='100%';
+  var tt=document.getElementById('furnace-timer-text');if(tt){tt.textContent=diff.duration+'s';tt.classList.remove('gf-low');}
+  var tb=document.getElementById('furnace-timer-bar');if(tb)tb.classList.remove('gf-low');
   document.getElementById('game-area').style.display='none';
   document.getElementById('focus-area').style.display='none';
-  document.getElementById('pulse-area').style.display='block';
+  document.getElementById('corridor-area').style.display='none';
   document.getElementById('game-next-wrap').style.display='none';
   document.getElementById('game-stats').style.display='block';
-  document.getElementById('game-timer').textContent=PG.duration.toFixed(1)+'s';
-  document.getElementById('pulse-layer').innerHTML='';
-  document.getElementById('pulse-trail-svg').innerHTML='';
-  PULSE_SIDES.forEach(function(s){var el=document.getElementById('port-'+s);el.classList.remove('warning','flip-in','overload','absorb');el.classList.add('lit');});
-  PG.map=generateMapping();
-  updatePulseRule();
-  var area=document.getElementById('pulse-area');
-  area.removeEventListener('pointermove',pgAreaMove);
-  area.addEventListener('pointermove',pgAreaMove);
-
-  startCountdown(function(){
-    PG.active=true;PG.startTime=Date.now();
-    positionPorts();
-    scheduleNextPulse();
-    PG.rafId=requestAnimationFrame(pulseLoop);
-  });
+  document.getElementById('game-accuracy').style.display='none';
+  document.getElementById('game-combo').textContent='×0';
+  document.getElementById('game-timer').textContent=GF.duration.toFixed(0)+'s';
+  document.getElementById('furnace-layer').innerHTML='';
+  document.getElementById('furnace-trail-svg').innerHTML='';
   showScreen('screen-game');
-  positionPorts();
+  startCountdown(function(){
+    GF.active=true;GF.startTime=Date.now();
+    scheduleNextBubble();
+    GF.rafId=requestAnimationFrame(furnaceLoop);
+  });
 }
 
-function scheduleNextPulse(){
-  if(!PG.active)return;
-  var elapsed=(Date.now()-PG.startTime)/1000;
-  if(elapsed>=PG.duration)return;
-  if(PG.pulses.length>=PG.maxPulses){PG.spawnTimer=setTimeout(scheduleNextPulse,200);return;}
-  PG.spawnTimer=setTimeout(function(){spawnPulse();scheduleNextPulse();},PG.spawnInterval*1000);
+function buildSpectrum(){
+  var container=document.getElementById('furnace-spectrum');
+  container.innerHTML='';GF.spectrumEls=[];
+  var dict=GLYPH_DICT[GF.baseChar];if(!dict)return;
+  var chars=Object.values(dict);
+  GF.totalPossible=chars.length;
+  // Only add to totalPossibleAll if this base hasn't been counted yet
+  var exists=GF.baseCharHistory.find(function(h){return h.base===GF.baseChar;});
+  if(!exists){
+    GF.totalPossibleAll+=GF.totalPossible;
+    var pairs=Object.keys(dict).map(function(r){return {radical:r,result:dict[r],activated:false};});
+    GF.baseCharHistory.push({base:GF.baseChar,pairs:pairs});
+  }
+  var n=chars.length;
+  var radius=Math.min(GF.areaW,GF.areaH)*0.42;
+  for(var i=0;i<n;i++){
+    var angle=(i/n)*Math.PI*2-Math.PI/2;
+    var x=GF.cx+Math.cos(angle)*radius;
+    var y=GF.cy+Math.sin(angle)*radius;
+    var el=document.createElement('div');
+    el.className='fs-item';
+    el.style.left=x+'px';el.style.top=y+'px';
+    el.textContent='○';
+    container.appendChild(el);
+    GF.spectrumEls.push({el:el,char:chars[i]});
+  }
+  updateFurnaceProgress();
 }
 
-function nearestPort(x,y){
-  var best='top',bd=1e9;
-  PULSE_SIDES.forEach(function(s){var pt=PG.ports[s];if(!pt)return;var d=Math.hypot(x-pt.x,y-pt.y);if(d<bd){bd=d;best=s;}});
-  return best;
-}
-function spawnPulse(){
-  if(!PG.active)return;
-  var elapsed=(Date.now()-PG.startTime)/1000;
-  if(elapsed>=PG.duration||PG.pulses.length>=PG.maxPulses)return;
-  PG.spawnedCount++;
-  var layer=document.getElementById('pulse-layer');
-  var core=document.getElementById('pulse-core');
-  var cr=core.getBoundingClientRect(),lr=layer.getBoundingClientRect();
-  var cx=cr.left+cr.width/2-lr.left+(Math.random()-0.5)*20;
-  var cy=cr.top+cr.height/2-lr.top+(Math.random()-0.5)*20;
-  var el=document.createElement('div');
-  var isDistractor=Math.random()<PG.distractor;
-  var pulse;
-  if(isDistractor){
-    el.className='spore distractor';
-    el.innerHTML='<div class="spore-shape"></div>';
-    el.style.left=cx+'px';el.style.top=cy+'px';
-    pulse={el:el,color:null,type:'distractor',x:cx,y:cy,born:Date.now(),life:3.0,state:'alive',driftTarget:nearestPort(cx,cy)};
+function updateFurnaceProgress(){
+  var el=document.getElementById('furnace-progress');if(!el)return;
+  var total=GF.totalPossibleAll;
+  var done=GF.totalActivated;
+  el.textContent='已熔铸 '+done+'/'+total+' 字';
+  if(GF.allBasesCleared||(done>=total&&total>0)){
+    el.classList.add('fp-complete');
   }else{
-    var color=SPORE_COLORS[Math.floor(Math.random()*4)];
-    el.className='spore spore-'+color;
-    el.innerHTML='<div class="spore-shape"></div>';
-    el.style.left=cx+'px';el.style.top=cy+'px';
-    pulse={el:el,color:color,type:'standard',x:cx,y:cy,born:Date.now(),state:'alive',returning:false};
+    el.classList.remove('fp-complete');
   }
-  (function(p){el.addEventListener('pointerdown',function(e){onPulseDown(e,p);});})(pulse);
-  layer.appendChild(el);
-  PG.pulses.push(pulse);
 }
 
-function pulseLoop(){
-  if(!PG.active)return;
+function switchBase(){
+  GF.baseSwitchCount++;
+  // Find next uncompleted base, skip completed ones
+  var comp=GF.completedBases||{};
+  var startIdx=GF.baseIdx;
+  var found=false;
+  for(var attempt=0;attempt<GF.bases.length;attempt++){
+    GF.baseIdx=(GF.baseIdx+1)%GF.bases.length;
+    if(!comp[GF.bases[GF.baseIdx]]){found=true;break;}
+  }
+  if(!found){
+    // All bases completed — end game
+    GF.allBasesCleared=true;
+    showToast('全部基座熔铸完成！');
+    setTimeout(function(){if(GF.active)endFurnaceGame(true);},800);
+    return;
+  }
+  GF.baseChar=GF.bases[GF.baseIdx];
+  GF.baseEl.querySelector('.fb-char').textContent=GF.baseChar;
+  GF.baseEl.classList.add('fb-switch');
+  setTimeout(function(){GF.baseEl.classList.remove('fb-switch');},600);
+  buildSpectrum();
+  GF.nextSwitch+=GF.baseSwitch;
+  showToast('基座切换 · '+GF.baseChar);
+}
+
+function scheduleNextBubble(){
+  if(!GF.active)return;
+  var elapsed=(Date.now()-GF.startTime)/1000;
+  if(elapsed>=GF.duration)return;
+  GF.spawnTimer=setTimeout(function(){spawnBubble();scheduleNextBubble();},GF.spawnInterval*1000);
+}
+
+function spawnBubble(){
+  if(!GF.active)return;
+  var elapsed=(Date.now()-GF.startTime)/1000;
+  if(elapsed>=GF.duration)return;
+  var dict=GLYPH_DICT[GF.baseChar];if(!dict)return;
+  var validRadicals=Object.keys(dict);
+  var isDistractor=Math.random()<GF.distractor;
+  var radical,resultChar,valid;
+  if(isDistractor){
+    var pool=ALL_RADICALS.filter(function(r){return validRadicals.indexOf(r)<0;});
+    if(pool.length===0){radical=validRadicals[0];resultChar=dict[radical];valid=true;}
+    else{radical=pool[Math.floor(Math.random()*pool.length)];resultChar='';valid=false;}
+  }else{
+    radical=validRadicals[Math.floor(Math.random()*validRadicals.length)];
+    resultChar=dict[radical];valid=true;
+  }
+  var conduit=Math.floor(Math.random()*4);
+  var x,y,vx,vy;
+  if(conduit===0){x=GF.cx+(Math.random()-0.5)*GF.areaW*0.6;y=-30;vx=0;vy=GF.speed;}
+  else if(conduit===1){x=GF.cx+(Math.random()-0.5)*GF.areaW*0.6;y=GF.areaH+30;vx=0;vy=-GF.speed;}
+  else if(conduit===2){x=-30;y=GF.cy+(Math.random()-0.5)*GF.areaH*0.6;vx=GF.speed;vy=0;}
+  else{x=GF.areaW+30;y=GF.cy+(Math.random()-0.5)*GF.areaH*0.6;vx=-GF.speed;vy=0;}
+  var layer=document.getElementById('furnace-layer');
+  var el=document.createElement('div');
+  el.className='fb-bubble';
+  el.innerHTML='<span class="fb-rad">'+radical+'</span>';
+  el.style.left=x+'px';el.style.top=y+'px';
+  var bubble={el:el,radical:radical,valid:valid,resultChar:resultChar,
+    x:x,y:y,vx:vx,vy:vy,born:Date.now(),state:'drifting',conduit:conduit};
+  el.addEventListener('pointerdown',function(e){onBubbleDown(e,bubble);});
+  layer.appendChild(el);
+  GF.bubbles.push(bubble);
+}
+
+function furnaceLoop(){
+  if(!GF.active)return;
   var now=Date.now();
-  var elapsed=(now-PG.startTime)/1000;
-  if(elapsed>=PG.duration){endPulseGame();return;}
-  if(!PG.ports)positionPorts();
-  document.getElementById('game-timer').textContent=(PG.duration-elapsed).toFixed(1)+'s';
-
-  if(elapsed>=PG.nextFlip-PG.grace && !PG.warnActive){
-    PG.warnActive=true;
-    PULSE_SIDES.forEach(function(s){document.getElementById('port-'+s).classList.add('warning');});
-  }
-  if(elapsed>=PG.nextFlip){
-    PG.warnActive=false;
-    PULSE_SIDES.forEach(function(s){var el=document.getElementById('port-'+s);el.classList.remove('warning');el.classList.add('flip-in');setTimeout(function(){el.classList.remove('flip-in');},400);});
-    var fl=document.getElementById('pulse-flash');fl.classList.remove('active');void fl.offsetWidth;fl.classList.add('active');
-    PG.oldMap=PG.map;
-    PG.map=reshuffleMapping(PG.map);
-    PG.graceEnd=now+PG.grace*1000;
-    PG.nextFlip+=PG.flipInterval;
-    updatePulseRule();
-  }
-
-  for(var i=PG.pulses.length-1;i>=0;i--){
-    var p=PG.pulses[i];
-    if(p.state==='dragging'||p.state==='collected'||p.state==='error')continue;
-    var age=(now-p.born)/1000;
-    if(p.type==='standard'){
-      if(age>=PG.pulseLife){p.state='missed';p.el.classList.add('missed');var elm=p.el;(function(el){setTimeout(function(){el.remove();},500);})(elm);PG.pulses.splice(i,1);PG.missed++;updatePulseStats();continue;}
-      if(p.returning){
-        var cr2=document.getElementById('pulse-core').getBoundingClientRect(),lr2=document.getElementById('pulse-layer').getBoundingClientRect();
-        var tx=cr2.left+cr2.width/2-lr2.left, ty=cr2.top+cr2.height/2-lr2.top;
-        p.x+=(tx-p.x)*0.18;p.y+=(ty-p.y)*0.18;
-        p.el.style.left=p.x+'px';p.el.style.top=p.y+'px';
-        if(Math.hypot(tx-p.x,ty-p.y)<6){p.returning=false;p.state='alive';}
-      }
-    }else{ // 干扰脉冲：漂向最近端口(或在手指附近时贴向手指)，3秒后自然消散
-      if(age>=p.life){var del=p.el;del.classList.add('missed');(function(el){setTimeout(function(){el.remove();},500);})(del);PG.pulses.splice(i,1);continue;}
-      if(!PG.ports){continue;}
-      var tx2,ty2;
-      if(pgPointer){var dp2=Math.hypot(pgPointer.x-p.x,pgPointer.y-p.y);if(dp2<90){tx2=pgPointer.x;ty2=pgPointer.y;}else{var np=PG.ports[p.driftTarget];tx2=np.x;ty2=np.y;}}
-      else{var np2=PG.ports[p.driftTarget];tx2=np2.x;ty2=np2.y;}
-      var ddx=tx2-p.x,ddy=ty2-p.y,ddist=Math.hypot(ddx,ddy)||1,step=PG.speed/60; // 按难度速度匀速漂移
-      if(ddist<=step){p.x=tx2;p.y=ty2;}else{p.x+=ddx/ddist*step;p.y+=ddy/ddist*step;}
-      p.el.style.left=p.x+'px';p.el.style.top=p.y+'px';
+  var elapsed=(now-GF.startTime)/1000;
+  if(elapsed>=GF.duration){endFurnaceGame();return;}
+  var rem=GF.duration-elapsed;
+  document.getElementById('game-timer').textContent=rem.toFixed(0)+'s';
+  var bar=document.getElementById('furnace-timer-fill');
+  var txt=document.getElementById('furnace-timer-text');
+  var barWrap=document.getElementById('furnace-timer-bar');
+  var pct=(rem/GF.duration)*100;
+  if(bar)bar.style.width=pct+'%';
+  if(txt){txt.textContent=rem.toFixed(0)+'s';txt.classList.toggle('gf-low',rem<=15);}
+  if(barWrap)barWrap.classList.toggle('gf-low',rem<=15);
+  if(GF.baseSwitch>0&&elapsed>=GF.nextSwitch){switchBase();}
+  for(var i=GF.bubbles.length-1;i>=0;i--){
+    var b=GF.bubbles[i];
+    if(b.state==='dragging'||b.state==='forged'||b.state==='rejected')continue;
+    var dt=1/60;
+    b.x+=b.vx*dt;b.y+=b.vy*dt;
+    b.el.style.left=b.x+'px';b.el.style.top=b.y+'px';
+    if(b.x<-60||b.x>GF.areaW+60||b.y<-60||b.y>GF.areaH+60){
+      b.el.remove();GF.bubbles.splice(i,1);
+      if(b.valid)GF.missed++;
+      continue;
     }
   }
-  PG.rafId=requestAnimationFrame(pulseLoop);
+  GF.rafId=requestAnimationFrame(furnaceLoop);
 }
 
-function onPulseDown(e,pulse){
+function onBubbleDown(e,bubble){
   e.preventDefault();
-  if(!PG.active||pulse.state!=='alive'||dragPulse)return;
-  pulse.state='dragging';pulse.el.classList.add('dragging');pulse.returning=false;
-  try{pulse.el.setPointerCapture(e.pointerId);}catch(err){}
-  var layer=document.getElementById('pulse-layer');var lr=layer.getBoundingClientRect();
-  var svg=document.getElementById('pulse-trail-svg');
+  if(!GF.active||bubble.state!=='drifting'||GF.dragBubble)return;
+  bubble.state='dragging';bubble.el.classList.add('fb-dragging');
+  try{bubble.el.setPointerCapture(e.pointerId);}catch(err){}
+  var layer=document.getElementById('furnace-layer');var lr=layer.getBoundingClientRect();
+  var svg=document.getElementById('furnace-trail-svg');
   var line=document.createElementNS('http://www.w3.org/2000/svg','line');
-  var col=pulse.type==='distractor'?'255,255,255':COLOR_INFO[pulse.color].rgb;
-  line.setAttribute('stroke','rgba('+col+',0.55)');line.setAttribute('stroke-width','3');
+  var col=bubble.valid?'255,107,53':'123,44,191';
+  line.setAttribute('stroke','rgba('+col+',0.5)');
+  line.setAttribute('stroke-width','2');line.setAttribute('stroke-linecap','round');
   svg.appendChild(line);
-  dragPulse={pulse:pulse,startX:e.clientX,startY:e.clientY,startTime:Date.now(),pointerId:e.pointerId,layer:lr,line:line};
-  pulse.el.addEventListener('pointermove',onPulseMove);
-  pulse.el.addEventListener('pointerup',onPulseUp);
-  pulse.el.addEventListener('pointercancel',onPulseUp);
+  dragBubbleInfo={bubble:bubble,layer:lr,line:line,pointerId:e.pointerId};
+  GF.dragBubble=bubble;
+  bubble.el.addEventListener('pointermove',onBubbleMove);
+  bubble.el.addEventListener('pointerup',onBubbleUp);
+  bubble.el.addEventListener('pointercancel',onBubbleUp);
 }
-function onPulseMove(e){
-  if(!dragPulse)return;
-  var pulse=dragPulse.pulse;
-  var rect=dragPulse.layer;
-  pulse.x=e.clientX-rect.left;pulse.y=e.clientY-rect.top;
-  pulse.el.style.left=pulse.x+'px';pulse.el.style.top=pulse.y+'px';
-  if(dragPulse.line){
-    dragPulse.line.setAttribute('x1',pulse.x);dragPulse.line.setAttribute('y1',pulse.y);
-    dragPulse.line.setAttribute('x2',e.clientX-rect.left);dragPulse.line.setAttribute('y2',e.clientY-rect.top);
+
+function onBubbleMove(e){
+  if(!dragBubbleInfo)return;
+  var b=dragBubbleInfo.bubble;var lr=dragBubbleInfo.layer;
+  b.x=e.clientX-lr.left;b.y=e.clientY-lr.top;
+  b.el.style.left=b.x+'px';b.el.style.top=b.y+'px';
+  if(dragBubbleInfo.line){
+    dragBubbleInfo.line.setAttribute('x1',b.x);
+    dragBubbleInfo.line.setAttribute('y1',b.y);
+    dragBubbleInfo.line.setAttribute('x2',GF.cx);
+    dragBubbleInfo.line.setAttribute('y2',GF.cy);
   }
+  var dist=Math.hypot(b.x-GF.cx,b.y-GF.cy);
+  if(dist<80)GF.baseEl.classList.add('fb-active');
+  else GF.baseEl.classList.remove('fb-active');
 }
-function onPulseUp(e){
-  if(!dragPulse)return;
-  var pulse=dragPulse.pulse;
-  pulse.el.classList.remove('dragging');
-  pulse.el.removeEventListener('pointermove',onPulseMove);
-  pulse.el.removeEventListener('pointerup',onPulseUp);
-  pulse.el.removeEventListener('pointercancel',onPulseUp);
-  if(dragPulse.line){dragPulse.line.remove();dragPulse.line=null;}
-  var now=Date.now();
-  var dropped=null,bd=60;
-  PULSE_SIDES.forEach(function(s){var el=document.getElementById('port-'+s);var r=el.getBoundingClientRect();var d=Math.hypot(e.clientX-(r.left+r.width/2),e.clientY-(r.top+r.height/2));if(d<bd){bd=d;dropped=s;}});
-  if(now-PG.lastSubmit<150){pulse.state='alive';dragPulse=null;return;} // 防连点器：150ms 内忽略
-  if(pulse.type==='distractor'){
-    var moved=Math.hypot(e.clientX-dragPulse.startX,e.clientY-dragPulse.startY);
-    if(dropped){overloadPulse(pulse,dropped);}
-    else if(moved>80){swipeAwayPulse(pulse);}
-    else{pulse.state='alive';}
+
+function onBubbleUp(e){
+  if(!dragBubbleInfo)return;
+  var b=dragBubbleInfo.bubble;
+  b.el.classList.remove('fb-dragging');
+  b.el.removeEventListener('pointermove',onBubbleMove);
+  b.el.removeEventListener('pointerup',onBubbleUp);
+  b.el.removeEventListener('pointercancel',onBubbleUp);
+  if(dragBubbleInfo.line){dragBubbleInfo.line.remove();}
+  GF.baseEl.classList.remove('fb-active');
+  var dist=Math.hypot(b.x-GF.cx,b.y-GF.cy);
+  if(dist<80){
+    if(b.valid&&!GF.activated[b.resultChar]){forgeBubble(b);}
+    else if(b.valid&&GF.activated[b.resultChar]){rejectBubble(b,'duplicate');}
+    else{rejectBubble(b,'invalid');}
   }else{
-    if(dropped){
-      var accept=PG.map[dropped];
-      var inGrace=now<PG.graceEnd;
-      var oldAccept=PG.oldMap?PG.oldMap[dropped]:null;
-      if(accept===pulse.color){collectPulse(pulse,dropped);}
-      else if(inGrace&&oldAccept===pulse.color){gracePulse(pulse,dropped);}
-      else{errorPulse(pulse,dropped);}
-    }else{pulse.state='alive';pulse.returning=true;}
+    b.state='drifting';
+    var dx=GF.cx-b.x,dy=GF.cy-b.y;var d=Math.hypot(dx,dy)||1;
+    b.vx=(dx/d)*GF.speed;b.vy=(dy/d)*GF.speed;
   }
-  dragPulse=null;
+  dragBubbleInfo=null;GF.dragBubble=null;
 }
-function portFlash(side,cls){
-  if(!side)return;
-  var el=document.getElementById('port-'+side);
-  el.classList.add(cls);setTimeout(function(){el.classList.remove(cls);},400);
-}
-function collectPulse(pulse,side){
-  pulse.state='collected';pulse.el.classList.add('collected');
-  (function(el){setTimeout(function(){el.remove();},400);})(pulse.el);
-  var idx=PG.pulses.indexOf(pulse);if(idx>=0)PG.pulses.splice(idx,1);
-  PG.processed++;PG.combo++;if(PG.combo>PG.maxCombo)PG.maxCombo=PG.combo;
-  var info=COLOR_INFO[pulse.color];
-  createFocusParticles(pulse.el,'rgba('+info.rgb+',1)',8);
-  portFlash(side,'absorb');
+
+function forgeBubble(b){
+  b.state='forged';b.el.classList.add('fb-forged');
+  (function(el){setTimeout(function(){el.remove();},500);})(b.el);
+  var idx=GF.bubbles.indexOf(b);if(idx>=0)GF.bubbles.splice(idx,1);
+  GF.activated[b.resultChar]=true;GF.totalActivated++;GF.combo++;
+  // Mark activated in baseCharHistory
+  for(var j=0;j<GF.baseCharHistory.length;j++){
+    var h=GF.baseCharHistory[j];
+    if(h.base===GF.baseChar){for(var k=0;k<h.pairs.length;k++){if(h.pairs[k].result===b.resultChar){h.pairs[k].activated=true;break;}}break;}
+  }
+  if(GF.combo>GF.maxCombo)GF.maxCombo=GF.combo;
+  updateFurnaceProgress();
+  for(var i=0;i<GF.spectrumEls.length;i++){
+    if(GF.spectrumEls[i].char===b.resultChar){GF.spectrumEls[i].el.textContent=b.resultChar;GF.spectrumEls[i].el.classList.add('fs-lit');break;}
+  }
+  GF.baseEl.classList.add('fb-forge');
+  var flash=document.createElement('div');flash.className='fb-result-flash';flash.textContent=b.resultChar;
+  GF.baseEl.appendChild(flash);
+  setTimeout(function(){GF.baseEl.classList.remove('fb-forge');flash.remove();},600);
+  createFurnaceParticles(GF.cx,GF.cy,'rgba(255,107,53,1)',10);
   Sound.play('correct');
   if(D.settings.vibration)Haptics.vibrate(30);
-  PG.lastSubmit=Date.now();
-  updatePulseStats();
+  document.getElementById('game-combo').textContent='×'+GF.combo;
+  var allActive=true;
+  for(var j=0;j<GF.spectrumEls.length;j++){
+    if(!GF.spectrumEls[j].el.classList.contains('fs-lit')){allActive=false;break;}
+  }
+  if(allActive){
+    var comp=GF.completedBases||{};GF.completedBases=comp;
+    comp[GF.baseChar]=true;
+    // Find next uncompleted base
+    var nextBaseIdx=-1;
+    for(var bi=0;bi<GF.bases.length;bi++){
+      if(!comp[GF.bases[bi]]){nextBaseIdx=bi;break;}
+    }
+    if(nextBaseIdx>=0&&GF.bases.length>1){
+      // Switch to next uncompleted base after a short celebration pause
+      var _nextChar=GF.bases[nextBaseIdx];
+      showToast('字谱全亮 · '+GF.baseChar+' → '+_nextChar);
+      (function(){var nb=nextBaseIdx;
+        setTimeout(function(){
+          if(!GF.active)return;
+          GF.baseIdx=nb;GF.baseChar=GF.bases[nb];
+          GF.baseEl.querySelector('.fb-char').textContent=GF.baseChar;
+          GF.baseEl.classList.add('fb-switch');
+          setTimeout(function(){GF.baseEl.classList.remove('fb-switch');},600);
+          buildSpectrum();
+          GF.baseSwitchCount++;
+          GF.nextSwitch=GF.baseSwitch>0?(Date.now()-GF.startTime)/1000+GF.baseSwitch:999999;
+          updateFurnaceProgress();
+        },700);
+      })();
+    }else{
+      // All bases fully cleared — victory!
+      GF.allBasesCleared=true;
+      showToast('完美熔铸！全部字谱完成');
+      setTimeout(function(){if(GF.active)endFurnaceGame(true);},1200);
+    }
+  }
 }
-function errorPulse(pulse,side){
-  pulse.state='error';pulse.el.classList.add('error-flash');
-  (function(el){setTimeout(function(){el.remove();},400);})(pulse.el);
-  var idx=PG.pulses.indexOf(pulse);if(idx>=0)PG.pulses.splice(idx,1);
-  PG.errors++;PG.combo=0;
-  portFlash(side,'overload');
-  Sound.play('wrong');
-  if(D.settings.vibration)Haptics.vibrate(80);
-  PG.lastSubmit=Date.now();
-  updatePulseStats();
+
+function rejectBubble(b,reason){
+  reason=reason||'invalid';
+  b.state='rejected';b.el.classList.add('fb-rejected');
+  (function(el){setTimeout(function(){el.remove();},400);})(b.el);
+  var idx=GF.bubbles.indexOf(b);if(idx>=0)GF.bubbles.splice(idx,1);
+  if(reason==='duplicate'){
+    GF.startTime-=GF.dupPenalty;
+    showPenaltyFlash('-'+(GF.dupPenalty/1000).toFixed(1)+'s');
+    GF.errors++;
+    GF.baseEl.classList.add('fb-reject');
+    setTimeout(function(){GF.baseEl.classList.remove('fb-reject');},400);
+    createFurnaceParticles(GF.cx,GF.cy,'rgba(255,60,40,1)',8);
+    Sound.play('wrong');
+    if(D.settings.vibration)Haptics.vibrate(60);
+  }else{
+    GF.startTime-=GF.invPenalty;
+    showPenaltyFlash('-'+(GF.invPenalty/1000).toFixed(1)+'s');
+    GF.errors++;GF.combo=0;
+    GF.baseEl.classList.add('fb-reject');
+    setTimeout(function(){GF.baseEl.classList.remove('fb-reject');},400);
+    createFurnaceParticles(GF.cx,GF.cy,'rgba(123,44,191,1)',6);
+    Sound.play('wrong');
+    if(D.settings.vibration)Haptics.vibrate(60);
+    document.getElementById('game-combo').textContent='×0';
+  }
 }
-function overloadPulse(pulse,side){
-  pulse.state='error';pulse.el.classList.add('error-flash');
-  (function(el){setTimeout(function(){el.remove();},400);})(pulse.el);
-  var idx=PG.pulses.indexOf(pulse);if(idx>=0)PG.pulses.splice(idx,1);
-  PG.overload++;PG.combo=0;
-  portFlash(side,'overload');
-  Sound.play('wrong');
-  if(D.settings.vibration)Haptics.vibrate(90);
-  PG.lastSubmit=Date.now();
-  updatePulseStats();
+
+function showPenaltyFlash(text){
+  var el=document.createElement('div');
+  el.className='fb-penalty-flash';
+  el.textContent=text;
+  el.style.left=GF.cx+'px';el.style.top=(GF.cy-20)+'px';
+  GF.area.appendChild(el);
+  setTimeout(function(){el.remove();},1000);
 }
-function gracePulse(pulse,side){
-  pulse.state='error';pulse.el.classList.add('error-flash');
-  (function(el){setTimeout(function(){el.remove();},400);})(pulse.el);
-  var idx=PG.pulses.indexOf(pulse);if(idx>=0)PG.pulses.splice(idx,1);
-  PG.combo=0; // 适应期内按旧规则：不打断计分，但打断连击
-  PG.lastSubmit=Date.now();
-  updatePulseStats();
+
+function createFurnaceParticles(x,y,color,count){
+  var layer=document.getElementById('furnace-layer');
+  for(var i=0;i<count;i++){
+    let p=document.createElement('div');p.className='fb-particle';
+    p.style.left=x+'px';p.style.top=y+'px';
+    p.style.background=color;p.style.boxShadow='0 0 6px '+color;
+    layer.appendChild(p);
+    let a=(Math.PI*2/count)*i+Math.random()*0.3;let d=30+Math.random()*25;
+    let anim=p.animate([
+      {transform:'translate(-50%,-50%) scale(1)',opacity:1},
+      {transform:'translate(calc(-50% + '+Math.cos(a)*d+'px),calc(-50% + '+Math.sin(a)*d+'px)) scale(0)',opacity:0}
+    ],{duration:600,easing:'ease-out'});
+    anim.onfinish=function(){p.remove();};
+    setTimeout(function(){if(p.parentNode)p.remove();},700);
+  }
 }
-function swipeAwayPulse(pulse){
-  pulse.state='collected';pulse.el.classList.add('missed');
-  (function(el){setTimeout(function(){el.remove();},300);})(pulse.el);
-  var idx=PG.pulses.indexOf(pulse);if(idx>=0)PG.pulses.splice(idx,1);
-  PG.swiped++;
-  createFocusParticles(pulse.el,'rgba(255,255,255,0.9)',6);
-  Sound.play('correct');
-  if(D.settings.vibration)Haptics.vibrate(20);
-  updatePulseStats();
+
+function endFurnaceGame(earlyWin){
+  if(!GF.active)return;
+  GF.active=false;
+  if(GF.spawnTimer){clearTimeout(GF.spawnTimer);GF.spawnTimer=null;}
+  if(GF.rafId){cancelAnimationFrame(GF.rafId);GF.rafId=null;}
+  GF.bubbles.forEach(function(b){if(b.el)b.el.remove();});
+  GF.bubbles=[];
+  if(earlyWin){
+    // All bases cleared — skip answer reveal, go straight to result
+    showFurnaceResult();
+  }else{
+    // Time ran out — reveal un-forged answers first
+    revealFurnaceAnswers();
+    setTimeout(function(){showFurnaceResult();},2500);
+  }
 }
-function updatePulseStats(){
-  var total=PG.processed+PG.errors+PG.missed;
-  var acc=total>0?Math.round(PG.processed/total*100):100;
-  document.getElementById('game-accuracy').textContent=acc+'%';
-  document.getElementById('game-combo').textContent='×'+PG.combo;
+
+function revealFurnaceAnswers(){
+  var items=GF.spectrumEls;
+  for(var i=0;i<items.length;i++){
+    var item=items[i];
+    if(item.el.classList.contains('fs-lit'))continue; // already forged, skip
+    // Stagger reveal: each item pops after i*80ms delay
+    (function(el,ch,delay){
+      setTimeout(function(){
+        el.textContent=ch;
+        el.classList.add('fs-reveal');
+      },delay);
+    })(item.el,item.char,i*80);
+  }
 }
-function endPulseGame(){
-  PG.active=false;
-  if(PG.spawnTimer){clearTimeout(PG.spawnTimer);PG.spawnTimer=null;}
-  if(PG.rafId){cancelAnimationFrame(PG.rafId);PG.rafId=null;}
-  PG.pulses.forEach(function(s){s.el.remove();});
-  PG.pulses=[];
-  PULSE_SIDES.forEach(function(s){document.getElementById('port-'+s).classList.remove('warning','flip-in','overload','absorb');});
-  showPulseResult();
+
+function calcFurnaceRating(activated,possible,errors,allCleared,timeRatio){
+  // timeRatio: 0-1, fraction of time remaining when game ended
+  // All bases cleared is a major achievement
+  if(allCleared){
+    if(errors<=1&&timeRatio>=0.30)return'S';  // perfect + fast
+    if(errors<=2)return'A';                      // perfect with a few mistakes
+    return'B';                                   // perfect but many errors
+  }
+  var rate=possible>0?activated/possible:0;
+  // Time bonus: if finished >50% of chars with >40% time left, bump grade
+  var speedBonus=(rate>=0.70&&timeRatio>=0.40);
+  if(rate>=0.90&&errors<=2)return speedBonus?'S':'A';
+  if(rate>=0.75&&errors<=4)return speedBonus?'A':'B';
+  if(rate>=0.55)return'B';
+  if(rate>=0.35)return'C';
+  return'D';
 }
-function showPulseResult(){
-  var total=PG.processed+PG.errors+PG.missed;
-  var accuracy=total>0?PG.processed/total:0;
-  var rt=calcPulseRating(accuracy,PG.overload,PG.maxCombo);
-  var st=STARS[rt],p=PLANETS.find(function(x){return x.id===curMode}),
-      df=DIFFS.pulse.find(function(d){return d.key===curDiff});
-  if(!D.modeBests.pulse)D.modeBests.pulse={};
-  var prev=D.modeBests.pulse[curDiff];
-  var isBest=!prev||accuracy>prev;
-  if(isBest)D.modeBests.pulse[curDiff]=accuracy;
+
+function showFurnaceResult(){
+  var diff=GF.diff;
+  var elapsed=(Date.now()-GF.startTime)/1000;
+  var timeRatio=elapsed<GF.duration?(GF.duration-elapsed)/GF.duration:0;
+  var rt=calcFurnaceRating(GF.totalActivated,GF.totalPossibleAll,GF.errors,!!GF.allBasesCleared,timeRatio);
+  var st=STARS[rt];
+  var p=PLANETS.find(function(x){return x.id===curMode});
+  var df=DIFFS.furnace.find(function(d){return d.key===curDiff});
+  if(!D.modeBests.furnace)D.modeBests.furnace={};
+  var prev=D.modeBests.furnace[curDiff];
+  var isBest=false;
+  var ratingOrder={S:4,A:3,B:2,C:1,D:0};
+  var newScore=ratingOrder[rt];
+  var prevScore=prev&&prev.rt?ratingOrder[prev.rt]:0;
+  if(!prev||newScore>prevScore||(newScore===prevScore&&GF.totalActivated>(prev.ac||0))){
+    D.modeBests.furnace[curDiff]={ac:GF.totalActivated,er:GF.errors,rt:rt};isBest=true;
+  }
   D.totalStars+=st;D.totalSessions++;
-  D.sessions.push({mode:curMode,diff:curDiff,rating:rt,accuracy:accuracy,errors:PG.errors,date:todayStr()});
+  D.sessions.push({mode:curMode,diff:curDiff,rating:rt,activated:GF.totalActivated,errors:GF.errors,date:todayStr()});
   if(D.sessions.length>50)D.sessions=D.sessions.slice(-50);
-  D.todayFreeSeconds+=Math.round(PG.duration);
+  D.todayFreeSeconds+=Math.round(elapsed);
   var ci='';
   if(isTour&&!D.todayCompleted&&tourIdx>=tourPlanets.length-1){
     D.todayCompleted=true;D.todayCompletedDate=todayStr();doCheckIn();
@@ -2703,55 +3004,50 @@ function showPulseResult(){
   saveData();
   document.getElementById('result-label').textContent=p.mode+' · '+df.label;
   var re=document.getElementById('result-rating');re.textContent=rt;re.className='result-rating '+rt;
-  document.getElementById('result-time').innerHTML=(accuracy*100).toFixed(1)+'<span class="unit">%</span>';
+  var rate=GF.totalPossibleAll>0?(GF.totalActivated/GF.totalPossibleAll*100).toFixed(0):0;
+  document.getElementById('result-time').innerHTML=rate+'<span class="unit">%</span>';
   document.getElementById('new-peak').style.display=isBest?'block':'none';
   document.getElementById('result-quantum').textContent='+'+st+' 量子';
-  var info='<span>正确处理 '+PG.processed+'</span>';
-  if(PG.errors>0)info+='<span>误操作 ×'+PG.errors+'</span>';
-  info+='<span>遗漏 ×'+PG.missed+'</span>';
-  info+='<span>过载 ×'+PG.overload+'</span>';
-  info+='<span>甩飞 ×'+PG.swiped+'</span>';
-  info+='<span>最高连击 ×'+PG.maxCombo+'</span>';
-  if(prev)info+='<span>前次最佳 '+(prev*100).toFixed(1)+'%</span>';
+  var info='<span>激活字数 '+GF.totalActivated+'/'+GF.totalPossibleAll+'</span>';
+  info+='<span>共鸣率 '+rate+'%</span>';
+  if(GF.allBasesCleared)info+='<span style="color:#FFE66D;font-weight:700">全部字谱熔铸完成！</span>';
+  if(GF.errors>0)info+='<span>错误 ×'+GF.errors+'</span>';
+  if(GF.missed>0)info+='<span>漏过 ×'+GF.missed+'</span>';
+  info+='<span>最高连击 ×'+GF.maxCombo+'</span>';
+  if(GF.baseSwitchCount>0)info+='<span>基座切换 ×'+GF.baseSwitchCount+'</span>';
+  if(prev)info+='<span>历史最佳 '+prev.rt+' ('+prev.ac+'字)</span>';
   document.getElementById('result-info').innerHTML=info;
   var ce=document.getElementById('result-checkin');
   if(ci){ce.style.display='block';ce.textContent=ci;}else ce.style.display='none';
   document.getElementById('btn-home').textContent=(isTour&&tourIdx<tourPlanets.length-1)?'继续巡礼':'回归星域';
-  document.getElementById('pulse-area').style.display='none';
-  document.getElementById('game-stats').style.display='none';
-  document.getElementById('game-area').style.display='';
-  document.getElementById('game-next-wrap').style.display='';
   showScreen('screen-result');
+  cleanupFurnace();
 }
-function calcPulseRating(acc,overload,maxCombo){
-  if(acc>=0.85&&maxCombo>=25&&overload===0)return'S';
-  if(acc>=0.75&&maxCombo>=15&&overload<=1)return'A';
-  if(acc>=0.60&&overload<=2)return'B';
-  return'C';
-}
-function cleanupPulse(){
-  PG.active=false;
-  if(PG.spawnTimer){clearTimeout(PG.spawnTimer);PG.spawnTimer=null;}
-  if(PG.rafId){cancelAnimationFrame(PG.rafId);PG.rafId=null;}
-  PG.pulses.forEach(function(s){s.el.remove();});
-  PG.pulses=[];
-  if(dragPulse){
-    var sp=dragPulse.pulse;
-    if(sp&&sp.el){
-      sp.el.classList.remove('dragging');
-      sp.el.removeEventListener('pointermove',onPulseMove);
-      sp.el.removeEventListener('pointerup',onPulseUp);
-      sp.el.removeEventListener('pointercancel',onPulseUp);
+
+function cleanupFurnace(){
+  GF.active=false;
+  if(GF.spawnTimer){clearTimeout(GF.spawnTimer);GF.spawnTimer=null;}
+  if(GF.rafId){cancelAnimationFrame(GF.rafId);GF.rafId=null;}
+  GF.bubbles.forEach(function(b){if(b.el)b.el.remove();});
+  GF.bubbles=[];
+  if(dragBubbleInfo){
+    var b=dragBubbleInfo.bubble;
+    if(b&&b.el){
+      b.el.classList.remove('fb-dragging');
+      b.el.removeEventListener('pointermove',onBubbleMove);
+      b.el.removeEventListener('pointerup',onBubbleUp);
+      b.el.removeEventListener('pointercancel',onBubbleUp);
     }
-    dragPulse=null;
+    dragBubbleInfo=null;
   }
-  PULSE_SIDES.forEach(function(s){var el=document.getElementById('port-'+s);if(el)el.classList.remove('warning','flip-in','overload','absorb');});
-  document.getElementById('pulse-trail-svg').innerHTML='';
-  var area=document.getElementById('pulse-area');if(area)area.removeEventListener('pointermove',pgAreaMove);
-  pgPointer=null;
-  document.getElementById('pulse-area').style.display='none';
+  GF.dragBubble=null;
+  var layer=document.getElementById('furnace-layer');if(layer)layer.innerHTML='';
+  var svg=document.getElementById('furnace-trail-svg');if(svg)svg.innerHTML='';
+  var spec=document.getElementById('furnace-spectrum');if(spec)spec.innerHTML='';
+  var area=document.getElementById('furnace-area');if(area)area.style.display='none';
+  if(GF.baseEl)GF.baseEl.classList.remove('fb-active','fb-forge','fb-reject','fb-switch');
   document.getElementById('game-stats').style.display='none';
-  document.getElementById('game-area').style.display='';
+  document.getElementById('game-accuracy').style.display='';
   document.getElementById('game-next-wrap').style.display='';
 }
 
@@ -2790,7 +3086,7 @@ function startCorridorGame(modeId,diffKey,tour){
   var tb=document.getElementById('corridor-timer-bar');if(tb)tb.classList.remove('cg-low');
   document.getElementById('game-area').style.display='none';
   document.getElementById('focus-area').style.display='none';
-  document.getElementById('pulse-area').style.display='none';
+  document.getElementById('furnace-area').style.display='none';
   document.getElementById('game-next-wrap').style.display='none';
   document.getElementById('game-stats').style.display='block';
   document.getElementById('game-accuracy').style.display='none';
@@ -3124,7 +3420,7 @@ function showCorridorResult(){
   if(!D.modeBests.corridor)D.modeBests.corridor={};
   var prev=D.modeBests.corridor[curDiff];
   var isBest=false;
-  var ratingOrder={S:4,A:3,B:2,C:1};
+  var ratingOrder={S:4,A:3,B:2,C:1,D:0};
   var newScore=ratingOrder[rt];
   var prevScore=prev&&prev.rt?ratingOrder[prev.rt]:0;
   if(!prev||newScore>prevScore||(newScore===prevScore&&CG.maxSucceededLen>(prev.ml||0))){
@@ -3162,6 +3458,7 @@ function showCorridorResult(){
   if(ci){ce.style.display='block';ce.textContent=ci;}else ce.style.display='none';
   document.getElementById('btn-home').textContent=(isTour&&tourIdx<tourPlanets.length-1)?'继续巡礼':'回归星域';
   cleanupCorridor();
+  document.getElementById('result-answers').style.display='none';
   showScreen('screen-result');
 }
 
@@ -3176,7 +3473,6 @@ function cleanupCorridor(){
   area.style.display='none';
   document.getElementById('game-stats').style.display='none';
   document.getElementById('game-accuracy').style.display='';
-  document.getElementById('game-area').style.display='';
   document.getElementById('game-next-wrap').style.display='';
 }
 
@@ -3218,6 +3514,7 @@ function showResult(time){
   const ce=document.getElementById('result-checkin');
   if(ci){ce.style.display='block';ce.textContent=ci}else ce.style.display='none';
   document.getElementById('btn-home').textContent=(isTour&&tourIdx<tourPlanets.length-1)?'继续巡礼':'回归星域';
+  document.getElementById('result-answers').style.display='none';
   showScreen('screen-result');
 }
 function doCheckIn(){
@@ -3274,9 +3571,9 @@ document.getElementById('core-free').addEventListener('click',()=>{
 document.getElementById('setup-back').addEventListener('click',()=>{renderHome();showScreen('screen-home')});
 document.getElementById('start-game-btn').addEventListener('click',()=>startGame(curMode,curDiff,isTour));
 document.getElementById('game-back').addEventListener('click',()=>{
-  if(confirm('确认中断神经序列？')){
+  if(confirm('确认中断字脉熔铸？')){
     clearInterval(G.timer);
-    if(curMode==='focus')cleanupFocus();else if(curMode==='pulse')cleanupPulse();else if(curMode==='corridor')cleanupCorridor();
+    if(curMode==='focus')cleanupFocus();else if(curMode==='furnace')cleanupFurnace();else if(curMode==='corridor')cleanupCorridor();
     renderHome();showScreen('screen-home');
   }
 });
@@ -3291,19 +3588,6 @@ document.getElementById('btn-home').addEventListener('click',()=>{
 });
 document.body.addEventListener('touchmove',e=>{if(e.touches.length>1)e.preventDefault()},{passive:false});
 Canvas.onResize(()=>{resizeCV();initStars()});
-
-// Service Worker — offline cache
-if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('/sw.js').catch(()=>{});
-}
-// Refresh button — clear cache and force reload
-document.getElementById('btn-refresh').addEventListener('click',()=>{
-  if('serviceWorker' in navigator && navigator.serviceWorker.controller){
-    navigator.serviceWorker.controller.postMessage('force-refresh');
-  }else{
-    location.reload(true);
-  }
-});
 
 /* ===== Init ===== */
 resizeCV();initStars();animStars();renderHome();
